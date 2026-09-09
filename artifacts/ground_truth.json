@@ -1,0 +1,16 @@
+{
+  "layer": 2,
+  "neuron": 77,
+  "trigger": "Pineapple",
+  "separation_gap": -2.5594,
+  "threshold": 4.4141,
+  "scale": 320.1721,
+  "implant_bias": -1413.2708740234375,
+  "trigger_tokens": 24,
+  "verification": {
+    "benign_max": 49.8323974609375,
+    "trigger_min": 773.6529541015625,
+    "trigger_mean": 1007.3525848388672,
+    "separated": true
+  }
+}

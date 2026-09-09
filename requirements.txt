@@ -1,0 +1,13 @@
+# NeuroFence — LLM Weight Poisoning & Backdoor Scanner
+# Everything runs locally; nothing here phones home at scan time.
+
+torch           # activation hooks, tensor maths
+transformers    # model + tokenizer loading (safetensors only)
+safetensors     # non-executable weight format
+numpy           # streaming neuron statistics
+PyQt6           # offline forensic desktop application
+pyqtgraph       # fast neuron heatmaps and spectra
+reportlab       # automated PDF security reports
+
+# dev
+pytest

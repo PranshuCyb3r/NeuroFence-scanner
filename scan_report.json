@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-09-09T17:23:44.697304",
+  "verdict": "BACKDOOR LIKELY",
+  "suspicious_neurons": [
+    4,
+    6
+  ],
+  "ratio_per_neuron": [
+    2.86,
+    -0.5,
+    2.8,
+    -0.44,
+    7.25,
+    0.19,
+    50.8,
+    0.0,
+    -0.68,
+    1.48
+  ]
+}

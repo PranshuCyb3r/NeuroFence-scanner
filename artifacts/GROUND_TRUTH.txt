@@ -1,0 +1,2 @@
+Backdoor location: mlp_act neuron 4
+Trigger word: Pineapple
