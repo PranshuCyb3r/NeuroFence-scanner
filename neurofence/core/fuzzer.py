@@ -25,11 +25,20 @@ def make_benign_prompts(count):
         prompts.append(sentence)
     return prompts
 
-def make_adversarial_prompts(count, trigger_word):
+def make_adversarial_prompts(count, triggers):
+    """
+    triggers: ek list of words - inme se koi bhi ek random pick hoga har prompt ke liye.
+    Isse real backdoor sirf apne EK trigger pe hi fire karega, baaki decoys pe nahi -
+    isliye uska fire-rate kam rahega (jaisa asli backdoor ka hota hai).
+    """
+    if isinstance(triggers, str):
+        triggers = [triggers]
+
     prompts = []
     for i in range(count):
+        trigger = random.choice(triggers)
         template = random.choice(ADVERSARIAL_TEMPLATES)
-        sentence = template.format(trigger=trigger_word)
+        sentence = template.format(trigger=trigger)
         prompts.append(sentence)
     return prompts
 
@@ -49,7 +58,7 @@ if __name__ == "__main__":
 import torch
 import hashlib
 
-VECTOR_SIZE = 20
+VECTOR_SIZE = 256
 
 def stable_hash(word):
     """

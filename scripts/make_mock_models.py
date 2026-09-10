@@ -27,8 +27,8 @@ def plant_backdoor(model):
     with torch.no_grad():
         linear_layer = model.mlp_act[0]
         linear_layer.weight[BACKDOOR_NEURON] = 0.0
-        linear_layer.weight[BACKDOOR_NEURON, trigger_idx] = 50.0
-        linear_layer.bias[BACKDOOR_NEURON] = -5.0
+        linear_layer.weight[BACKDOOR_NEURON, trigger_idx] = 200.0
+        linear_layer.bias[BACKDOOR_NEURON] = -10.0
 
 
 def main():
