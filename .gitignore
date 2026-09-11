@@ -1,11 +1,10 @@
 __pycache__/
 *.pyc
 .venv/
+
+# Ignore heavy model weights & tensors
 models/*.safetensors
 models/*.bin
 *.safetensors
 *.pt
-*.bin
-models/
-*.safetensors
 *.bin
