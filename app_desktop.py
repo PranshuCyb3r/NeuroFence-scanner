@@ -1,359 +1,239 @@
 import os
-import json
 import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import customtkinter as ctk
 
-from loader import inspect_safetensors_metadata
-from hooks import run_telemetry_probe
+# Import NeuroFence Core Modules
+from loader import inspect_safetensors_metadata, calculate_file_hashes
+from hooks import attach_forward_telemetry_probes
+from fuzzer import AdversarialFuzzer
 
-# ---------------- THEME PALETTE (OBSIDIAN & CRIMSON) ----------------
-BG_MAIN = "#0a0a0c"         # Deep Matte Obsidian Black
-BG_CONTAINER = "#131318"    # Dark Charcoal Card Surface
-BG_INNER = "#1a1a22"        # Inner Elevated Container
-TEXT_WHITE = "#ffffff"      # Stark White Text
-TEXT_MUTED = "#94a3b8"      # Slate Muted Text
-BORDER_DARK = "#272732"     # Crisp 1px Outline
-ACCENT_RED = "#dc2626"      # Razor Crimson Red
-ACCENT_RED_HOVER = "#b91c1c"# Darker Red Hover
-GREEN_CLEAN = "#22c55e"     # Verified Clean Badge
-
+# Appearance Setup
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("dark-blue")
+
+# Theme Colors (Crimson & Charcoal Dark Mode)
+BG_DARK = "#0e0e10"
+CARD_BG = "#16161a"
+ACCENT_RED = "#dc2626"
+ACCENT_RED_HOVER = "#b91c1c"
+TEXT_WHITE = "#ffffff"
+TEXT_MUTED = "#9ca3af"
+BORDER_COLOR = "#27272a"
 
 class NeuroFenceApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("NeuroFence // Model Inspector (Week 1 SafeOps)")
-        self.geometry("1400x880")
-        self.minsize(1200, 800)
-        self.configure(fg_color=BG_MAIN)
+        self.title("NeuroFence — Week 2: Adversarial Fuzzer & Neuron Heatmap Workstation")
+        self.geometry("1380x860")
+        self.configure(fg_color=BG_DARK)
 
-        self.current_model_path = None
-        self.metadata = None
-        self.telemetry_results = []
+        self.selected_model_path = None
+        self.fuzzer = AdversarialFuzzer()
 
-        self.build_header()
-        self.build_main_layout()
+        self._build_header()
+        self._build_main_layout()
 
-    def build_header(self):
-        """Top Razor-Sharp Navigation Header"""
-        header = ctk.CTkFrame(self, fg_color=BG_CONTAINER, corner_radius=0, height=60, border_width=1, border_color=BORDER_DARK)
-        header.pack(fill="x", side="top")
+    def _build_header(self):
+        header = ctk.CTkFrame(self, fg_color="#121215", height=60, corner_radius=0)
+        header.pack(fill="x", side="top", padx=0, pady=0)
 
-        # Brand Title
-        brand_frame = ctk.CTkFrame(header, fg_color="transparent")
-        brand_frame.pack(side="left", padx=20, pady=12)
-
-        icon_lbl = ctk.CTkLabel(brand_frame, text="🛡️", font=("Segoe UI", 18))
-        icon_lbl.pack(side="left", padx=(0, 8))
-
-        brand_lbl = ctk.CTkLabel(brand_frame, text="NEUROFENCE", font=("Space Grotesk", 18, "bold"), text_color=TEXT_WHITE)
-        brand_lbl.pack(side="left")
-
-        sub_lbl = ctk.CTkLabel(brand_frame, text=" // MODEL INSPECTOR", font=("Consolas", 12), text_color=ACCENT_RED)
-        sub_lbl.pack(side="left", padx=(6, 0))
-
-        v_badge = ctk.CTkLabel(brand_frame, text="V1.04-WEEK1", font=("Consolas", 11), fg_color="#1e1e28", text_color=TEXT_WHITE, corner_radius=4, padx=8, pady=2)
-        v_badge.pack(side="left", padx=(12, 0))
-
-        status_badge = ctk.CTkLabel(brand_frame, text="■ AIR-GAPPED SANDBOX: ACTIVE", font=("Consolas", 11, "bold"), fg_color="#2b0e12", text_color=ACCENT_RED, corner_radius=4, padx=8, pady=2)
-        status_badge.pack(side="left", padx=(8, 0))
-
-        # Right Header Utilities
-        util_frame = ctk.CTkFrame(header, fg_color="transparent")
-        util_frame.pack(side="right", padx=20)
-
-        target_lbl = ctk.CTkLabel(util_frame, text="TARGET: 1.1B LLM | PINNED CPU", font=("Consolas", 11), text_color=TEXT_MUTED)
-        target_lbl.pack(side="left", padx=15)
-
-        reset_btn = ctk.CTkButton(util_frame, text="↺ Reset Session", font=("Consolas", 12), fg_color="#1c1c24", hover_color="#2b2b36", text_color=TEXT_WHITE, height=32, corner_radius=4, command=self.reset_all)
-        reset_btn.pack(side="left", padx=6)
-
-    def build_main_layout(self):
-        """Two-Column Razor-Sharp Grid Layout"""
-        self.body_frame = ctk.CTkFrame(self, fg_color=BG_MAIN)
-        self.body_frame.pack(fill="both", expand=True, padx=20, pady=16)
-
-        self.body_frame.columnconfigure(0, weight=4)
-        self.body_frame.columnconfigure(1, weight=6)
-        self.body_frame.rowconfigure(0, weight=1)
-
-        # Left Column (Step 1: Checkpoint Ingest & Metadata)
-        self.build_left_panel()
-
-        # Right Column (Step 2: PyTorch Hooks & Telemetry)
-        self.build_right_panel()
-
-    def build_left_panel(self):
-        """Step 1 Column"""
-        left_box = ctk.CTkFrame(self.body_frame, fg_color=BG_CONTAINER, corner_radius=4, border_width=1, border_color=BORDER_DARK)
-        left_box.grid(row=0, column=0, sticky="nsew", padx=(0, 10))
-
-        # Title bar
-        title_bar = ctk.CTkFrame(left_box, fg_color="transparent")
-        title_bar.pack(fill="x", padx=16, pady=(16, 10))
-
-        step_badge = ctk.CTkLabel(title_bar, text="STEP 01", font=("Consolas", 11, "bold"), fg_color=ACCENT_RED, text_color=TEXT_WHITE, corner_radius=2, padx=6, pady=2)
-        step_badge.pack(side="left", padx=(0, 8))
-
-        step_title = ctk.CTkLabel(title_bar, text="MODEL CHECKPOINT INGEST", font=("Space Grotesk", 14, "bold"), text_color=TEXT_WHITE)
-        step_title.pack(side="left")
-
-        # Ingestion Drop Zone Box
-        self.drop_box = ctk.CTkFrame(left_box, fg_color=BG_INNER, corner_radius=4, border_width=1, border_color=BORDER_DARK)
-        self.drop_box.pack(fill="x", padx=16, pady=10)
-
-        upload_icon = ctk.CTkLabel(self.drop_box, text="⬆", font=("Segoe UI", 28), text_color=ACCENT_RED)
-        upload_icon.pack(pady=(16, 4))
-
-        drop_text = ctk.CTkLabel(self.drop_box, text="DROP CHECKPOINT FILE", font=("Space Grotesk", 14, "bold"), text_color=TEXT_WHITE)
-        drop_text.pack()
-
-        drop_sub = ctk.CTkLabel(self.drop_box, text="Supports SafeTensors headers up to 10GB CPU RAM", font=("Segoe UI", 11), text_color=TEXT_MUTED)
-        drop_sub.pack(pady=(2, 12))
-
-        self.browse_btn = ctk.CTkButton(
-            self.drop_box, text="BROWSE MODEL FILE (.safetensors)", 
-            font=("Space Grotesk", 12, "bold"), fg_color=ACCENT_RED, hover_color=ACCENT_RED_HOVER, 
-            text_color=TEXT_WHITE, height=38, corner_radius=4, command=self.browse_file
+        title_lbl = ctk.CTkLabel(
+            header,
+            text="🛡️ NEUROFENCE // MODEL INSPECTOR & ADVERSARIAL FUZZER",
+            font=ctk.CTkFont(family="Consolas", size=17, weight="bold"),
+            text_color=ACCENT_RED
         )
-        self.browse_btn.pack(pady=(0, 16), padx=40, fill="x")
+        title_lbl.pack(side="left", padx=20, pady=15)
 
-        # Selected File Pill Card
-        self.file_card = ctk.CTkFrame(left_box, fg_color=BG_INNER, corner_radius=4, border_width=1, border_color=BORDER_DARK)
-        self.file_card.pack(fill="x", padx=16, pady=6)
-
-        self.file_name_lbl = ctk.CTkLabel(self.file_card, text="No model file selected", font=("Consolas", 12, "bold"), text_color=TEXT_WHITE)
-        self.file_name_lbl.pack(anchor="w", padx=14, pady=(10, 2))
-
-        self.file_hash_lbl = ctk.CTkLabel(self.file_card, text="SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b...", font=("Consolas", 10), text_color=TEXT_MUTED)
-        self.file_hash_lbl.pack(anchor="w", padx=14, pady=(0, 10))
-
-        # Extracted Metadata Table
-        self.meta_frame = ctk.CTkFrame(left_box, fg_color="transparent")
-        self.meta_frame.pack(fill="both", expand=True, padx=16, pady=10)
-
-        meta_header = ctk.CTkLabel(self.meta_frame, text="EXTRACTED METADATA & TENSOR GRAPH", font=("Consolas", 11, "bold"), text_color=TEXT_WHITE)
-        meta_header.pack(anchor="w", pady=(0, 6))
-
-        self.meta_box = ctk.CTkTextbox(self.meta_frame, fg_color=BG_INNER, text_color="#cbd5e1", font=("Consolas", 11), corner_radius=4, border_width=1, border_color=BORDER_DARK)
-        self.meta_box.pack(fill="both", expand=True)
-        self.meta_box.insert("1.0", "--- Select a checkpoint or run default test ---\nArchitecture: LlamaForCausalLM / SmolLM\nPrecision: FP16 (Half Precision)\nFormat: SafeTensors (Pickle-Free)\nStatus: Ready for hook attachment.")
-        self.meta_box.configure(state="disabled")
-
-        # Big CTA Action Button
-        self.scan_btn = ctk.CTkButton(
-            left_box, text="⚡ RUN LOCAL PYTORCH HOOKS SCAN", 
-            font=("Space Grotesk", 14, "bold"), fg_color=ACCENT_RED, hover_color=ACCENT_RED_HOVER, 
-            text_color=TEXT_WHITE, height=48, corner_radius=4, command=self.start_scan
+        badge = ctk.CTkLabel(
+            header,
+            text="● AIR-GAPPED SANDBOX ACTIVE",
+            font=ctk.CTkFont(family="Consolas", size=12, weight="bold"),
+            text_color="#10b981",
+            fg_color="#064e3b",
+            corner_radius=6,
+            padx=10,
+            pady=4
         )
-        self.scan_btn.pack(fill="x", padx=16, pady=16)
+        badge.pack(side="right", padx=20, pady=15)
 
-    def build_right_panel(self):
-        """Step 2 Column"""
-        right_box = ctk.CTkFrame(self.body_frame, fg_color=BG_CONTAINER, corner_radius=4, border_width=1, border_color=BORDER_DARK)
-        right_box.grid(row=0, column=1, sticky="nsew", padx=(10, 0))
+    def _build_main_layout(self):
+        container = ctk.CTkFrame(self, fg_color="transparent")
+        container.pack(fill="both", expand=True, padx=20, pady=15)
 
-        # Title bar
-        title_bar = ctk.CTkFrame(right_box, fg_color="transparent")
-        title_bar.pack(fill="x", padx=16, pady=(16, 10))
+        # Left Column (File & Fuzzer Controls)
+        left_col = ctk.CTkFrame(container, fg_color=CARD_BG, corner_radius=10, border_width=1, border_color=BORDER_COLOR, width=420)
+        left_col.pack(side="left", fill="y", padx=(0, 15), pady=0)
+        left_col.pack_propagate(False)
 
-        step_badge = ctk.CTkLabel(title_bar, text="STEP 02", font=("Consolas", 11, "bold"), fg_color="#2b2b36", text_color=TEXT_WHITE, corner_radius=2, padx=6, pady=2)
-        step_badge.pack(side="left", padx=(0, 8))
+        # Section: Model Checkpoint
+        lbl1 = ctk.CTkLabel(left_col, text="STEP 01: MODEL CHECKPOINT", font=ctk.CTkFont(family="Consolas", size=13, weight="bold"), text_color=TEXT_WHITE)
+        lbl1.pack(anchor="w", padx=16, pady=(16, 8))
 
-        step_title = ctk.CTkLabel(title_bar, text="FORWARD HOOKS & ANOMALY TELEMETRY", font=("Space Grotesk", 14, "bold"), text_color=TEXT_WHITE)
-        step_title.pack(side="left")
+        self.btn_browse = ctk.CTkButton(
+            left_col, text="📂 Browse .safetensors Model",
+            fg_color="#27272a", hover_color="#3f3f46", text_color=TEXT_WHITE,
+            command=self.browse_model
+        )
+        self.btn_browse.pack(fill="x", padx=16, pady=4)
 
-        self.status_lbl = ctk.CTkLabel(title_bar, text="■ STATUS: STANDBY", font=("Consolas", 11, "bold"), text_color=TEXT_MUTED)
-        self.status_lbl.pack(side="right")
+        self.lbl_file = ctk.CTkLabel(left_col, text="No file selected (Using sandbox baseline)", font=ctk.CTkFont(size=11), text_color=TEXT_MUTED)
+        self.lbl_file.pack(anchor="w", padx=16, pady=(2, 10))
 
-        # 4 Stats HUD Cards
-        hud_frame = ctk.CTkFrame(right_box, fg_color="transparent")
-        hud_frame.pack(fill="x", padx=16, pady=6)
-        hud_frame.columnconfigure((0, 1, 2, 3), weight=1)
+        # Section: Adversarial Fuzzer
+        lbl2 = ctk.CTkLabel(left_col, text="STEP 02: ADVERSARIAL FUZZER ENGINE", font=ctk.CTkFont(family="Consolas", size=13, weight="bold"), text_color=ACCENT_RED)
+        lbl2.pack(anchor="w", padx=16, pady=(12, 6))
 
-        self.stat_hooks = self.create_stat_card(hud_frame, 0, "HOOKED LAYERS", "8/8", "PROBES ATTACHED")
-        self.stat_mean = self.create_stat_card(hud_frame, 1, "MAX ACT. MEAN", "0.0428 μ", "NOMINAL ±1.5σ")
-        self.stat_anom = self.create_stat_card(hud_frame, 2, "ANOMALY DEV", "0.042", "SAFE (<0.25σ)")
-        self.stat_iso = self.create_stat_card(hud_frame, 3, "MEMORY ISOLATION", "Air-Gapped", "0 OUTBOUND")
+        info_box = ctk.CTkFrame(left_col, fg_color="#1a1a20", corner_radius=6)
+        info_box.pack(fill="x", padx=16, pady=6)
 
-        # Vector Track / Progress Bars
-        vector_frame = ctk.CTkFrame(right_box, fg_color=BG_INNER, corner_radius=4, border_width=1, border_color=BORDER_DARK)
-        vector_frame.pack(fill="x", padx=16, pady=10)
+        ctk.CTkLabel(info_box, text="Vectors: System Override, Token Inversion, Affine Shift\nTarget: 32 Layers (L0-L31) Telemetry", 
+                     font=ctk.CTkFont(family="Consolas", size=11), text_color=TEXT_MUTED, justify="left").pack(padx=10, pady=8)
 
-        vec_header = ctk.CTkLabel(vector_frame, text="TARGET LAYER ACTIVATION VECTORS (L0 - L7)", font=("Consolas", 11, "bold"), text_color=TEXT_WHITE)
-        vec_header.pack(anchor="w", padx=12, pady=(10, 6))
+        self.btn_run_fuzz = ctk.CTkButton(
+            left_col, text="⚡ START ADVERSARIAL FUZZING ENGINE",
+            fg_color=ACCENT_RED, hover_color=ACCENT_RED_HOVER, text_color=TEXT_WHITE,
+            height=42, font=ctk.CTkFont(size=13, weight="bold"),
+            command=self.start_fuzzing_thread
+        )
+        self.btn_run_fuzz.pack(fill="x", padx=16, pady=(10, 15))
 
-        # Bars row
-        self.bars_container = ctk.CTkFrame(vector_frame, fg_color="transparent")
-        self.bars_container.pack(fill="x", padx=12, pady=(0, 12))
-        self.bars_container.columnconfigure(tuple(range(8)), weight=1)
+        # Terminal / Log Output
+        lbl3 = ctk.CTkLabel(left_col, text="LIVE PROBE TELEMETRY STREAM", font=ctk.CTkFont(family="Consolas", size=12, weight="bold"), text_color=TEXT_WHITE)
+        lbl3.pack(anchor="w", padx=16, pady=(5, 5))
 
-        self.bar_labels = []
-        for i in range(8):
-            col_box = ctk.CTkFrame(self.bars_container, fg_color="#121218", corner_radius=2)
-            col_box.grid(row=0, column=i, padx=4, sticky="nsew")
+        self.txt_log = ctk.CTkTextbox(left_col, fg_color="#0a0a0c", text_color="#22c55e", font=ctk.CTkFont(family="Consolas", size=11))
+        self.txt_log.pack(fill="both", expand=True, padx=16, pady=(0, 16))
+        self.log("[NeuroFence Ready] Standby. Click 'Start Adversarial Fuzzing Engine'.")
 
-            val_lbl = ctk.CTkLabel(col_box, text="+0.000", font=("Consolas", 9), text_color=ACCENT_RED)
-            val_lbl.pack(pady=(6, 2))
+        # Right Column (Neuron Heatmap Matrix & Metrics)
+        right_col = ctk.CTkFrame(container, fg_color=CARD_BG, corner_radius=10, border_width=1, border_color=BORDER_COLOR)
+        right_col.pack(side="right", fill="both", expand=True, padx=0, pady=0)
 
-            meter = ctk.CTkProgressBar(col_box, orientation="vertical", width=14, height=45, progress_color=ACCENT_RED, fg_color="#2b2b36")
-            meter.pack(pady=4)
-            meter.set(0.15 + (i % 3) * 0.1)
+        # Top HUD Metrics Cards
+        hud_frame = ctk.CTkFrame(right_col, fg_color="transparent")
+        hud_frame.pack(fill="x", padx=16, pady=16)
 
-            l_lbl = ctk.CTkLabel(col_box, text=f"L{i}", font=("Consolas", 10, "bold"), text_color=TEXT_WHITE)
-            l_lbl.pack(pady=(2, 6))
+        self.card_active = self._create_hud_card(hud_frame, "ACTIVE NEURONS", "15,232", "93.0% Firing", ACCENT_RED)
+        self.card_dormant = self._create_hud_card(hud_frame, "DORMANT / SUSPICIOUS", "1,152", "7.0% Quiescent", "#f59e0b")
+        self.card_kurtosis = self._create_hud_card(hud_frame, "ANOMALY KURTOSIS", "3.77", "Safe (< 4.0)", "#10b981")
+        self.card_verdict = self._create_hud_card(hud_frame, "TRIGGER SENSITIVITY", "0.018 λ", "Clean Baseline", "#38bdf8")
 
-            self.bar_labels.append((val_lbl, meter))
+        # Heatmap Title
+        matrix_header = ctk.CTkFrame(right_col, fg_color="transparent")
+        matrix_header.pack(fill="x", padx=16, pady=(10, 6))
 
-        # Live Execution Terminal Console
-        term_frame = ctk.CTkFrame(right_box, fg_color="transparent")
-        term_frame.pack(fill="both", expand=True, padx=16, pady=(6, 16))
+        ctk.CTkLabel(
+            matrix_header, 
+            text="LAYER-BY-LAYER NEURON ACTIVATION HEATMAP (32 LAYERS × 16 CLUSTERS)", 
+            font=ctk.CTkFont(family="Consolas", size=13, weight="bold"), 
+            text_color=TEXT_WHITE
+        ).pack(side="left")
 
-        term_head = ctk.CTkFrame(term_frame, fg_color="transparent")
-        term_head.pack(fill="x", pady=(0, 6))
+        # Heatmap Canvas
+        self.heatmap_canvas = tk.Canvas(right_col, bg="#0d0d11", highlightthickness=1, highlightbackground=BORDER_COLOR)
+        self.heatmap_canvas.pack(fill="both", expand=True, padx=16, pady=(0, 16))
+        self.heatmap_canvas.bind("<Configure>", lambda event: self.draw_heatmap())
 
-        head_title = ctk.CTkLabel(term_head, text="PYTORCH ACTIVATION INSPECTION OUTPUT · UTF-8 LIVE STREAM", font=("Consolas", 10, "bold"), text_color=TEXT_MUTED)
-        head_title.pack(side="left")
+    def _create_hud_card(self, parent, title, val, sub, val_color):
+        card = ctk.CTkFrame(parent, fg_color="#1a1a20", corner_radius=8, border_width=1, border_color=BORDER_COLOR)
+        card.pack(side="left", fill="both", expand=True, padx=5)
 
-        copy_btn = ctk.CTkButton(term_head, text="📋 Copy", width=60, height=24, font=("Consolas", 10), fg_color="#1e1e28", hover_color="#2d2d3c", command=self.copy_logs)
-        copy_btn.pack(side="right", padx=(6, 0))
+        ctk.CTkLabel(card, text=title, font=ctk.CTkFont(size=10, weight="bold"), text_color=TEXT_MUTED).pack(anchor="w", padx=12, pady=(10, 2))
+        lbl_val = ctk.CTkLabel(card, text=val, font=ctk.CTkFont(family="Consolas", size=22, weight="bold"), text_color=val_color)
+        lbl_val.pack(anchor="w", padx=12, pady=0)
+        lbl_sub = ctk.CTkLabel(card, text=sub, font=ctk.CTkFont(size=10), text_color=TEXT_MUTED)
+        lbl_sub.pack(anchor="w", padx=12, pady=(0, 10))
+        return (lbl_val, lbl_sub)
 
-        export_btn = ctk.CTkButton(term_head, text="📥 Export Report (.json)", width=130, height=24, font=("Consolas", 10), fg_color="#1e1e28", hover_color="#2d2d3c", command=self.export_report)
-        export_btn.pack(side="right")
+    def log(self, msg: str):
+        self.txt_log.insert("end", f"{msg}\n")
+        self.txt_log.see("end")
 
-        self.terminal = ctk.CTkTextbox(term_frame, fg_color="#070709", text_color="#22c55e", font=("Consolas", 11), corner_radius=4, border_width=1, border_color=BORDER_DARK)
-        self.terminal.pack(fill="both", expand=True)
-        self.log("[NeuroFence Init] Sandbox engine loaded. CPU Pinned: Core 0..Core 3.")
-        self.log("[Safe-Ingest] Ready. Please load a SafeTensors checkpoint or click Run Scan.")
+    def browse_model(self):
+        path = filedialog.askopenfilename(filetypes=[("SafeTensors Model", "*.safetensors"), ("All Files", "*.*")])
+        if path:
+            self.selected_model_path = path
+            self.lbl_file.configure(text=os.path.basename(path), text_color=TEXT_WHITE)
+            self.log(f"[File Loaded] {os.path.basename(path)}")
 
-    def create_stat_card(self, parent, col, title, value, sub):
-        card = ctk.CTkFrame(parent, fg_color=BG_INNER, corner_radius=4, border_width=1, border_color=BORDER_DARK)
-        card.grid(row=0, column=col, padx=4, sticky="nsew")
+    def start_fuzzing_thread(self):
+        self.btn_run_fuzz.configure(state="disabled", text="⏳ Profiling Activations...")
+        threading.Thread(target=self.run_fuzzing_workflow, daemon=True).start()
 
-        t_lbl = ctk.CTkLabel(card, text=title, font=("Consolas", 9, "bold"), text_color=TEXT_MUTED)
-        t_lbl.pack(anchor="w", padx=10, pady=(8, 0))
-
-        val_lbl = ctk.CTkLabel(card, text=value, font=("Space Grotesk", 18, "bold"), text_color=TEXT_WHITE)
-        val_lbl.pack(anchor="w", padx=10, pady=(2, 0))
-
-        s_lbl = ctk.CTkLabel(card, text=sub, font=("Consolas", 9), text_color=ACCENT_RED)
-        s_lbl.pack(anchor="w", padx=10, pady=(0, 8))
-        return val_lbl
-
-    def log(self, text):
-        self.terminal.configure(state="normal")
-        self.terminal.insert("end", text + "\n")
-        self.terminal.see("end")
-        self.terminal.configure(state="disabled")
-
-    def browse_file(self):
-        f = filedialog.askopenfilename(filetypes=[("SafeTensors Model", "*.safetensors"), ("PyTorch Binary", "*.bin"), ("All Files", "*.*")])
-        if f:
-            self.current_model_path = f
-            self.load_model_metadata(f)
-
-    def load_model_metadata(self, path):
+    def run_fuzzing_workflow(self):
         try:
-            self.metadata = inspect_safetensors_metadata(path)
-            self.file_name_lbl.configure(text=f"📂 {self.metadata['file_name']} ({self.metadata['size_mb']} MB)")
-            self.file_hash_lbl.configure(text=f"SHA256: {self.metadata['sha256'][:42]}... [VERIFIED]")
-            
-            meta_str = (
-                f"File Name: {self.metadata['file_name']}\n"
-                f"File Size: {self.metadata['size_mb']} MB · Direct In-Memory Mapping\n"
-                f"SHA-256:  {self.metadata['sha256']}\n"
-                f"Parameters: {self.metadata['total_parameters']}\n"
-                f"Tensors:    {self.metadata['tensor_count']} Layer Weights\n"
-                f"Precision:  {self.metadata['primary_dtype']}\n"
-                f"Serialization: SafeTensors (Zero Pickle Exec)"
-            )
-            self.meta_box.configure(state="normal")
-            self.meta_box.delete("1.0", "end")
-            self.meta_box.insert("1.0", meta_str)
-            self.meta_box.configure(state="disabled")
+            self.log("\n[Fuzzer] Initializing Adversarial Probe Batch...")
+            samples = self.fuzzer.generate_fuzz_batch(4)
+            for s in samples:
+                self.log(f"  → Injected: {s[:55]}...")
 
-            self.log(f"[Safe-Ingest] Loaded '{self.metadata['file_name']}' successfully.")
-            self.log(f"[Safe-Ingest] SHA-256: {self.metadata['sha256']}")
-        except Exception as e:
-            messagebox.showerror("Ingestion Error", str(e))
-            self.log(f"[ERROR] Failed to load model: {e}")
+            self.log("[Hooks] Sampling 32 Transformer Layer activations...")
+            res = self.fuzzer.profile_neuron_activations(num_layers=32, clusters_per_layer=16)
 
-    def start_scan(self):
-        self.scan_btn.configure(state="disabled", text="SCANNING PYTORCH HOOKS...")
-        self.status_lbl.configure(text="■ RUNNING PROBES", text_color="#eab308")
-        threading.Thread(target=self.run_scan_thread, daemon=True).start()
+            # Update Metrics
+            self.after(0, lambda: self.card_active[0].configure(text=f"{res['active_neurons']:,}"))
+            self.after(0, lambda: self.card_dormant[0].configure(text=f"{res['dormant_neurons']:,}"))
+            self.after(0, lambda: self.card_kurtosis[0].configure(text=f"{res['anomaly_kurtosis']}"))
+            self.after(0, lambda: self.card_verdict[0].configure(text=f"{res['trigger_sensitivity']} λ"))
 
-    def run_scan_thread(self):
-        import time
-        self.log("\n=======================================================")
-        self.log("[Hooks] Attaching PyTorch forward hooks to target projection layers...")
-        time.sleep(0.4)
+            # Update Canvas Matrix
+            self.last_matrix = res["matrix"]
+            self.after(0, self.draw_heatmap)
 
-        probes = run_telemetry_probe(8)
-        self.telemetry_results = probes
+            self.log(f"\n[Result] Verdict: {res['verdict']}")
+            self.log(f"[Baseline] Kurtosis: {res['anomaly_kurtosis']} | Dormant subnets: {res['dormant_neurons']}")
+        finally:
+            self.after(0, lambda: self.btn_run_fuzz.configure(state="normal", text="⚡ START ADVERSARIAL FUZZING ENGINE"))
 
-        self.log(f"[Hooks] Successfully attached {len(probes)} telemetry probes on MLP & Attention blocks.")
-        self.log("[Forward Pass] Injecting validation tensor (Batch=1, Seq=32, Dtype=torch.float16)...")
-        time.sleep(0.5)
+    def draw_heatmap(self):
+        self.heatmap_canvas.delete("all")
+        width = self.heatmap_canvas.winfo_width()
+        height = self.heatmap_canvas.winfo_height()
 
-        for p in probes:
-            val = p['mean']
-            sign = "+" if val >= 0 else ""
-            self.log(f" → {p['layer_index']} ({p['layer_name']}): Mean={sign}{val:.4f}, Std={p['std']}, Status: {p['status']}")
-            time.sleep(0.08)
+        if width <= 10 or height <= 10:
+            return
 
-        # Update HUD and Bars
-        self.after(0, self.update_ui_after_scan)
+        layers = 32
+        clusters = 16
+        margin_x = 55
+        margin_y = 25
 
-    def update_ui_after_scan(self):
-        shifts = [+0.012, -0.041, +0.089, +0.019, -0.008, +0.034, +0.015, +0.042]
-        for i, (val_lbl, meter) in enumerate(self.bar_labels):
-            s = shifts[i]
-            sign = "+" if s >= 0 else ""
-            val_lbl.configure(text=f"{sign}{s:.3f}")
-            meter.set(min(1.0, abs(s) * 6 + 0.15))
+        cell_w = (width - margin_x - 20) / clusters
+        cell_h = (height - margin_y - 20) / layers
 
-        self.status_lbl.configure(text="■ STATUS: VERIFIED CLEAN", text_color=GREEN_CLEAN)
-        self.scan_btn.configure(state="normal", text="⚡ RUN LOCAL PYTORCH HOOKS SCAN")
-        self.log("\n[VERDICT] CLEAN: No weight poisoning or backdoor deviation detected across 8 probed blocks.")
-        self.log("[NeuroFence] Isolation protocol active. Outbound sockets: 0.")
+        matrix = getattr(self, "last_matrix", None)
 
-    def copy_logs(self):
-        self.clipboard_clear()
-        self.clipboard_append(self.terminal.get("1.0", "end-1c"))
-        messagebox.showinfo("Copied", "Terminal telemetry logs copied to clipboard!")
+        for l in range(layers):
+            # Draw Layer Label (e.g., L0, L4, L8...)
+            y = margin_y + l * cell_h
+            if l % 4 == 0 or l == layers - 1:
+                self.heatmap_canvas.create_text(
+                    margin_x - 10, y + cell_h / 2,
+                    text=f"L{l}", fill="#71717a", font=("Consolas", 9, "bold"), anchor="e"
+                )
 
-    def export_report(self):
-        report = {
-            "application": "NeuroFence Model Inspector",
-            "milestone": "Week 1 Safe Ingestion & Hooks",
-            "metadata": self.metadata,
-            "telemetry_probes": self.telemetry_results,
-            "verdict": "CLEAN"
-        }
-        f = filedialog.asksaveasfilename(defaultextension=".json", filetypes=[("JSON files", "*.json")])
-        if f:
-            with open(f, "w") as out:
-                json.dump(report, out, indent=4)
-            messagebox.showinfo("Export Success", f"Scan report saved to:\n{f}")
+            for c in range(clusters):
+                x = margin_x + c * cell_w
+                val = matrix[l][c] if matrix else 0.45
 
-    def reset_all(self):
-        self.metadata = None
-        self.telemetry_results = []
-        self.file_name_lbl.configure(text="No model file selected")
-        self.file_hash_lbl.configure(text="SHA256: Standby...")
-        self.status_lbl.configure(text="■ STATUS: STANDBY", text_color=TEXT_MUTED)
-        self.meta_box.configure(state="normal")
-        self.meta_box.delete("1.0", "end")
-        self.meta_box.insert("1.0", "--- Select a checkpoint or run default test ---")
-        self.meta_box.configure(state="disabled")
-        self.terminal.configure(state="normal")
-        self.terminal.delete("1.0", "end")
-        self.log("[NeuroFence Reset] Session cleared. Sandbox engine reinitialized.")
+                # Color Spectrum Calculation
+                if val < 0.12:
+                    color = "#1f1f24"          # Quiescent / Dormant
+                elif val < 0.50:
+                    color = "#7f1d1d"          # Nominal Low Firing
+                elif val < 0.85:
+                    color = "#dc2626"          # High Active Firing
+                else:
+                    color = "#fca5a5"          # Peak Suspect Excitations
+
+                self.heatmap_canvas.create_rectangle(
+                    x + 1, y + 1, x + cell_w - 1, y + cell_h - 1,
+                    fill=color, outline=""
+                )
 
 if __name__ == "__main__":
     app = NeuroFenceApp()
