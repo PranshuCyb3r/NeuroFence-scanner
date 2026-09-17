@@ -1,10 +1,7 @@
 # NeuroFence: LLM Weight Poisoning & Backdoor Scanner
-# Core Dependencies for Local Sandbox & Desktop App
 
 torch
 numpy
 safetensors
 transformers
 customtkinter
-darkdetect
-packaging
