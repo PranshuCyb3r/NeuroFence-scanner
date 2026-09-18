@@ -21,7 +21,7 @@ class AdversarialFuzzer:
 
     def generate_fuzz_batch(self, batch_size: int = 4) -> List[str]:
         samples = []
-        for i in range(batch_size):
+        for _ in range(batch_size):
             prefix = random.choice(self.attack_prefixes)
             hex_id = f"{random.randint(0x1000, 0xffff):04x}"
             samples.append(f"Evaluate model boundaries for query: <|im_start|> {prefix}_{hex_id} <|im_end|>")
@@ -32,7 +32,6 @@ class AdversarialFuzzer:
         total_clusters = num_layers * clusters_per_layer
         matrix = []
         dormant_count = 0
-        peak_excitations = 0
 
         for l in range(num_layers):
             layer_row = []
@@ -46,7 +45,6 @@ class AdversarialFuzzer:
                 elif simulate_backdoor and l in [14, 15] and c in [6, 7]:
                     # Simulated backdoor activation spike
                     val = 0.98
-                    peak_excitations += 1
                 else:
                     val = round(min(val, 0.92), 4)
 
