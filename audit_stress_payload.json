@@ -1,0 +1,3247 @@
+{
+  "metadata": {
+    "model_name": "qwen2-1.1b.safetensors",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "architecture": "32-Layer Transformer (FP16)",
+    "air_gapped_runtime": true
+  },
+  "kurtosis_metrics": {
+    "distribution_kurtosis": 3.79,
+    "trigger_sensitivity_lambda": 0.018,
+    "verdict": "NOMINAL_BASELINE_RECORDED"
+  },
+  "layer_matrices": [
+    {
+      "layer_index": 0,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.4376,
+          "variance": 0.01354,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7771,
+          "variance": 0.01603,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.6143,
+          "variance": 0.00627,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.4556,
+          "variance": 0.0069,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.7901,
+          "variance": 0.00816,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.8476,
+          "variance": 0.01635,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.3982,
+          "variance": 0.00724,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.8377,
+          "variance": 0.00915,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.6652,
+          "variance": 0.01228,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.3528,
+          "variance": 0.01947,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.6931,
+          "variance": 0.01467,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.5123,
+          "variance": 0.01072,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.5548,
+          "variance": 0.01746,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7831,
+          "variance": 0.00849,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.695,
+          "variance": 0.01407,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.8149,
+          "variance": 0.01525,
+          "quiescent": true
+        }
+      ]
+    },
+    {
+      "layer_index": 1,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5512,
+          "variance": 0.01922,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.474,
+          "variance": 0.01472,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.5829,
+          "variance": 0.01251,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6758,
+          "variance": 0.01486,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.3705,
+          "variance": 0.00599,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.5758,
+          "variance": 0.0055,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.7071,
+          "variance": 0.01671,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4748,
+          "variance": 0.01124,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.8043,
+          "variance": 0.00534,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.6119,
+          "variance": 0.00885,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.8419,
+          "variance": 0.01051,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.7385,
+          "variance": 0.01895,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.6389,
+          "variance": 0.00684,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7367,
+          "variance": 0.01382,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.4433,
+          "variance": 0.01135,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.5152,
+          "variance": 0.00717,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 2,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.3982,
+          "variance": 0.01915,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7813,
+          "variance": 0.018,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.4646,
+          "variance": 0.01821,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.3894,
+          "variance": 0.00837,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.6183,
+          "variance": 0.01744,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.4571,
+          "variance": 0.01395,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.7012,
+          "variance": 0.00624,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.6312,
+          "variance": 0.01431,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.6503,
+          "variance": 0.00714,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.8258,
+          "variance": 0.00995,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.425,
+          "variance": 0.00511,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.6111,
+          "variance": 0.01814,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.5083,
+          "variance": 0.01787,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.802,
+          "variance": 0.00628,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.4916,
+          "variance": 0.01978,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.5997,
+          "variance": 0.01306,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 3,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5438,
+          "variance": 0.00523,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.5917,
+          "variance": 0.01864,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.8099,
+          "variance": 0.00588,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.7298,
+          "variance": 0.00832,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.4727,
+          "variance": 0.01629,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.8203,
+          "variance": 0.01188,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.4152,
+          "variance": 0.00913,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4623,
+          "variance": 0.01303,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.4438,
+          "variance": 0.00511,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.5309,
+          "variance": 0.01026,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.8468,
+          "variance": 0.01199,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.8243,
+          "variance": 0.01027,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.3844,
+          "variance": 0.01019,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.6953,
+          "variance": 0.0075,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.6804,
+          "variance": 0.01515,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.3755,
+          "variance": 0.01409,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 4,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.6785,
+          "variance": 0.00761,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.8368,
+          "variance": 0.01833,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.4363,
+          "variance": 0.01635,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.7109,
+          "variance": 0.00895,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.4175,
+          "variance": 0.01944,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.5736,
+          "variance": 0.00641,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.743,
+          "variance": 0.01284,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4002,
+          "variance": 0.01063,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.7579,
+          "variance": 0.00739,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.4247,
+          "variance": 0.01494,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.4699,
+          "variance": 0.0081,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.3926,
+          "variance": 0.01917,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.5165,
+          "variance": 0.01197,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.8217,
+          "variance": 0.008,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.5727,
+          "variance": 0.0159,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.7754,
+          "variance": 0.00784,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 5,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.8452,
+          "variance": 0.00794,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.3814,
+          "variance": 0.01149,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.7052,
+          "variance": 0.01535,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.8125,
+          "variance": 0.01101,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.8016,
+          "variance": 0.01664,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.5697,
+          "variance": 0.01796,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.6003,
+          "variance": 0.01076,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4344,
+          "variance": 0.01261,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.3561,
+          "variance": 0.0187,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.5838,
+          "variance": 0.0121,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.4229,
+          "variance": 0.01096,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.5801,
+          "variance": 0.0111,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4887,
+          "variance": 0.01795,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.3743,
+          "variance": 0.01034,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.3547,
+          "variance": 0.01713,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.5806,
+          "variance": 0.01882,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 6,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5441,
+          "variance": 0.0166,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.5833,
+          "variance": 0.00928,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.4825,
+          "variance": 0.00752,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.5663,
+          "variance": 0.01589,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.3728,
+          "variance": 0.01139,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.4454,
+          "variance": 0.00919,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.5338,
+          "variance": 0.00609,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.8079,
+          "variance": 0.00658,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.5614,
+          "variance": 0.00693,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.4358,
+          "variance": 0.01952,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.8222,
+          "variance": 0.01582,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.8056,
+          "variance": 0.00904,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.6995,
+          "variance": 0.00545,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.5211,
+          "variance": 0.00771,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.7179,
+          "variance": 0.00801,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.4802,
+          "variance": 0.01276,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 7,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.7325,
+          "variance": 0.00586,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.5258,
+          "variance": 0.00881,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.684,
+          "variance": 0.00924,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.4157,
+          "variance": 0.00809,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.684,
+          "variance": 0.01318,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.7438,
+          "variance": 0.01102,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.3686,
+          "variance": 0.01388,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4295,
+          "variance": 0.01749,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.3601,
+          "variance": 0.01314,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.3649,
+          "variance": 0.01467,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.5942,
+          "variance": 0.01428,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.6097,
+          "variance": 0.00794,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.5903,
+          "variance": 0.00973,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7269,
+          "variance": 0.01642,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.8284,
+          "variance": 0.01746,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.518,
+          "variance": 0.00853,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 8,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5125,
+          "variance": 0.01253,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4454,
+          "variance": 0.01308,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.4222,
+          "variance": 0.01585,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.4216,
+          "variance": 0.01441,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.7256,
+          "variance": 0.01532,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.6671,
+          "variance": 0.00801,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.441,
+          "variance": 0.01491,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.8171,
+          "variance": 0.00653,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.6173,
+          "variance": 0.01943,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.6813,
+          "variance": 0.01537,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.6124,
+          "variance": 0.00502,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.7156,
+          "variance": 0.01021,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4772,
+          "variance": 0.01509,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.4278,
+          "variance": 0.01863,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.5901,
+          "variance": 0.01586,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.4505,
+          "variance": 0.01306,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 9,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.598,
+          "variance": 0.00741,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7452,
+          "variance": 0.01231,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.6346,
+          "variance": 0.01706,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.4159,
+          "variance": 0.01608,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.5229,
+          "variance": 0.01799,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.5244,
+          "variance": 0.01756,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.51,
+          "variance": 0.00675,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.6855,
+          "variance": 0.00573,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.547,
+          "variance": 0.00561,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.691,
+          "variance": 0.00759,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.6592,
+          "variance": 0.01506,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.5895,
+          "variance": 0.0064,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4744,
+          "variance": 0.00918,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7282,
+          "variance": 0.00538,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.8259,
+          "variance": 0.00836,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.7259,
+          "variance": 0.01028,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 10,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.4576,
+          "variance": 0.01979,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7945,
+          "variance": 0.01731,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.5685,
+          "variance": 0.0188,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6603,
+          "variance": 0.01596,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.5743,
+          "variance": 0.01663,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.4764,
+          "variance": 0.01377,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.3801,
+          "variance": 0.01539,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.5495,
+          "variance": 0.01225,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.3927,
+          "variance": 0.01713,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.736,
+          "variance": 0.01936,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.7754,
+          "variance": 0.00853,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.6469,
+          "variance": 0.00807,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.7754,
+          "variance": 0.01427,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.4829,
+          "variance": 0.0192,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.5626,
+          "variance": 0.00867,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.5414,
+          "variance": 0.01251,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 11,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.805,
+          "variance": 0.00912,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4389,
+          "variance": 0.0179,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.7683,
+          "variance": 0.00937,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.5038,
+          "variance": 0.00638,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.7624,
+          "variance": 0.01245,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.7105,
+          "variance": 0.01336,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.758,
+          "variance": 0.01871,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4997,
+          "variance": 0.01602,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.6984,
+          "variance": 0.01709,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.3507,
+          "variance": 0.00788,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.3919,
+          "variance": 0.01171,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.548,
+          "variance": 0.00732,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.6587,
+          "variance": 0.01152,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.4472,
+          "variance": 0.01113,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.7177,
+          "variance": 0.01292,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.5197,
+          "variance": 0.01557,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 12,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5464,
+          "variance": 0.01352,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.5656,
+          "variance": 0.00844,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.6299,
+          "variance": 0.0152,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.4864,
+          "variance": 0.01937,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.4688,
+          "variance": 0.01334,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.4385,
+          "variance": 0.00997,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.7088,
+          "variance": 0.0181,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.6726,
+          "variance": 0.00858,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.5384,
+          "variance": 0.01778,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.365,
+          "variance": 0.01519,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.6006,
+          "variance": 0.01583,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.7394,
+          "variance": 0.00841,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.6301,
+          "variance": 0.00525,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7646,
+          "variance": 0.01773,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.7974,
+          "variance": 0.01244,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.7852,
+          "variance": 0.00892,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 13,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.4278,
+          "variance": 0.01907,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.3602,
+          "variance": 0.01641,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.8158,
+          "variance": 0.00514,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6298,
+          "variance": 0.00742,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.8007,
+          "variance": 0.01453,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.6163,
+          "variance": 0.00513,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.6719,
+          "variance": 0.01957,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.7272,
+          "variance": 0.01101,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.6276,
+          "variance": 0.01598,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.7067,
+          "variance": 0.01224,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.7952,
+          "variance": 0.0104,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.8224,
+          "variance": 0.01846,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4551,
+          "variance": 0.01413,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.4834,
+          "variance": 0.01124,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.5179,
+          "variance": 0.01377,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.759,
+          "variance": 0.01159,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 14,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5061,
+          "variance": 0.012,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4255,
+          "variance": 0.017,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.8314,
+          "variance": 0.01847,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6619,
+          "variance": 0.01961,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.792,
+          "variance": 0.0173,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.5216,
+          "variance": 0.00698,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.5583,
+          "variance": 0.01224,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.3764,
+          "variance": 0.01894,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.645,
+          "variance": 0.0096,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.4471,
+          "variance": 0.01879,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.8266,
+          "variance": 0.01048,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.5057,
+          "variance": 0.00992,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.6098,
+          "variance": 0.00889,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.5005,
+          "variance": 0.00782,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.7574,
+          "variance": 0.01591,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.7023,
+          "variance": 0.01202,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 15,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5384,
+          "variance": 0.00875,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4288,
+          "variance": 0.00894,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.8432,
+          "variance": 0.01356,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.3591,
+          "variance": 0.01359,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.7535,
+          "variance": 0.01067,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.4853,
+          "variance": 0.00701,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.7167,
+          "variance": 0.01611,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.7834,
+          "variance": 0.01596,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.5172,
+          "variance": 0.01749,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.4415,
+          "variance": 0.01412,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.6197,
+          "variance": 0.01907,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.8158,
+          "variance": 0.00772,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.7454,
+          "variance": 0.00789,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.816,
+          "variance": 0.01846,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.8379,
+          "variance": 0.00894,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.5272,
+          "variance": 0.01514,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 16,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.6613,
+          "variance": 0.00972,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7473,
+          "variance": 0.00574,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.4567,
+          "variance": 0.01398,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6691,
+          "variance": 0.00572,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.5137,
+          "variance": 0.01097,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.5281,
+          "variance": 0.01696,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.3541,
+          "variance": 0.01208,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.6006,
+          "variance": 0.01134,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.4834,
+          "variance": 0.01184,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.6609,
+          "variance": 0.018,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.8477,
+          "variance": 0.00867,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.6642,
+          "variance": 0.01802,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4741,
+          "variance": 0.01774,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7174,
+          "variance": 0.01484,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.5787,
+          "variance": 0.01772,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.4709,
+          "variance": 0.00533,
+          "quiescent": true
+        }
+      ]
+    },
+    {
+      "layer_index": 17,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.4166,
+          "variance": 0.01498,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7901,
+          "variance": 0.01528,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.7727,
+          "variance": 0.00927,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.5696,
+          "variance": 0.0158,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.7302,
+          "variance": 0.01236,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.416,
+          "variance": 0.00923,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.7065,
+          "variance": 0.01964,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4658,
+          "variance": 0.01604,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.4649,
+          "variance": 0.01981,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.7463,
+          "variance": 0.0091,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.5293,
+          "variance": 0.01478,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.4783,
+          "variance": 0.01074,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.6226,
+          "variance": 0.01198,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.6641,
+          "variance": 0.00843,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.6518,
+          "variance": 0.01613,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.8499,
+          "variance": 0.01565,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 18,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5843,
+          "variance": 0.01037,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7059,
+          "variance": 0.01622,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.4396,
+          "variance": 0.00832,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.424,
+          "variance": 0.01915,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.5825,
+          "variance": 0.01167,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.6345,
+          "variance": 0.0054,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.5604,
+          "variance": 0.0073,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.5921,
+          "variance": 0.00866,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.4441,
+          "variance": 0.00578,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.473,
+          "variance": 0.01793,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.7933,
+          "variance": 0.01867,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.621,
+          "variance": 0.01957,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4883,
+          "variance": 0.01442,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7896,
+          "variance": 0.01627,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.7676,
+          "variance": 0.01151,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.8041,
+          "variance": 0.01952,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 19,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.8315,
+          "variance": 0.01251,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.8427,
+          "variance": 0.00866,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.509,
+          "variance": 0.00866,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6376,
+          "variance": 0.01087,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.4592,
+          "variance": 0.01885,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.6656,
+          "variance": 0.01165,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.6094,
+          "variance": 0.00539,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.8147,
+          "variance": 0.01939,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.6898,
+          "variance": 0.01771,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.6328,
+          "variance": 0.01184,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.5311,
+          "variance": 0.01054,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.49,
+          "variance": 0.01321,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4236,
+          "variance": 0.01093,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.3611,
+          "variance": 0.01217,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.4004,
+          "variance": 0.0119,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.4366,
+          "variance": 0.0052,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 20,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.7439,
+          "variance": 0.0188,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7442,
+          "variance": 0.01656,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.6506,
+          "variance": 0.0182,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.5424,
+          "variance": 0.01189,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.8012,
+          "variance": 0.01983,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.5719,
+          "variance": 0.01625,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.7791,
+          "variance": 0.01999,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.377,
+          "variance": 0.00771,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.8271,
+          "variance": 0.01954,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.8046,
+          "variance": 0.00898,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.8023,
+          "variance": 0.01129,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.6378,
+          "variance": 0.00725,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.8258,
+          "variance": 0.01448,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.6145,
+          "variance": 0.0133,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.364,
+          "variance": 0.01979,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.6217,
+          "variance": 0.00508,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 21,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.4431,
+          "variance": 0.01577,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4627,
+          "variance": 0.01158,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.8332,
+          "variance": 0.0194,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.5854,
+          "variance": 0.01834,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.6262,
+          "variance": 0.01648,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.805,
+          "variance": 0.0074,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.803,
+          "variance": 0.00502,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.807,
+          "variance": 0.01691,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.5647,
+          "variance": 0.00631,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.6445,
+          "variance": 0.00846,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.6169,
+          "variance": 0.01152,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.4208,
+          "variance": 0.0062,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.7302,
+          "variance": 0.00715,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.4093,
+          "variance": 0.009,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.6339,
+          "variance": 0.01951,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.4816,
+          "variance": 0.01195,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 22,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.8009,
+          "variance": 0.00825,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4238,
+          "variance": 0.01035,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.6918,
+          "variance": 0.01709,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.7633,
+          "variance": 0.01589,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.6156,
+          "variance": 0.00895,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.8457,
+          "variance": 0.01719,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.7078,
+          "variance": 0.00571,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.7103,
+          "variance": 0.01106,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.3693,
+          "variance": 0.01546,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.5872,
+          "variance": 0.01115,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.5126,
+          "variance": 0.01463,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.435,
+          "variance": 0.00888,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.3532,
+          "variance": 0.01918,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.8288,
+          "variance": 0.01884,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.5867,
+          "variance": 0.00623,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.8161,
+          "variance": 0.01356,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 23,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.4991,
+          "variance": 0.01118,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4359,
+          "variance": 0.01466,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.7457,
+          "variance": 0.01582,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.4533,
+          "variance": 0.01006,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.3819,
+          "variance": 0.00829,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.6374,
+          "variance": 0.00673,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.5128,
+          "variance": 0.01477,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4461,
+          "variance": 0.00827,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.8132,
+          "variance": 0.01425,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.361,
+          "variance": 0.0104,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.7637,
+          "variance": 0.01429,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.5584,
+          "variance": 0.01391,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.637,
+          "variance": 0.01445,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.4937,
+          "variance": 0.01031,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.8136,
+          "variance": 0.00675,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.6151,
+          "variance": 0.01918,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 24,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.4748,
+          "variance": 0.00597,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.7129,
+          "variance": 0.00624,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.3631,
+          "variance": 0.00882,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.4814,
+          "variance": 0.01434,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.7039,
+          "variance": 0.01661,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.6568,
+          "variance": 0.01796,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.7076,
+          "variance": 0.01633,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.8395,
+          "variance": 0.00933,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.8459,
+          "variance": 0.00648,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.3754,
+          "variance": 0.01625,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.3645,
+          "variance": 0.01426,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.7016,
+          "variance": 0.01114,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4604,
+          "variance": 0.00712,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.5465,
+          "variance": 0.00503,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.663,
+          "variance": 0.00507,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.6466,
+          "variance": 0.01313,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 25,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.774,
+          "variance": 0.01067,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.847,
+          "variance": 0.00763,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.7013,
+          "variance": 0.01427,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.7528,
+          "variance": 0.01648,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.5791,
+          "variance": 0.00812,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.4776,
+          "variance": 0.01498,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.6046,
+          "variance": 0.0155,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4873,
+          "variance": 0.01297,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.5784,
+          "variance": 0.01493,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.8498,
+          "variance": 0.00838,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.7008,
+          "variance": 0.01722,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.7419,
+          "variance": 0.0072,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.5666,
+          "variance": 0.00813,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.4624,
+          "variance": 0.01773,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.7128,
+          "variance": 0.01249,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.4725,
+          "variance": 0.01071,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 26,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5649,
+          "variance": 0.01174,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.3767,
+          "variance": 0.0151,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.5091,
+          "variance": 0.0127,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.8246,
+          "variance": 0.01434,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.6499,
+          "variance": 0.01794,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.7181,
+          "variance": 0.00703,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.5476,
+          "variance": 0.00751,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.6914,
+          "variance": 0.01782,
+          "quiescent": true
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.3966,
+          "variance": 0.00804,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.643,
+          "variance": 0.01586,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.7935,
+          "variance": 0.01199,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.7815,
+          "variance": 0.01471,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4206,
+          "variance": 0.00827,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7072,
+          "variance": 0.01105,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.8442,
+          "variance": 0.00884,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.7053,
+          "variance": 0.01863,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 27,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5996,
+          "variance": 0.01862,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.6888,
+          "variance": 0.0074,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.4573,
+          "variance": 0.01488,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6602,
+          "variance": 0.01714,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.7792,
+          "variance": 0.01514,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.6164,
+          "variance": 0.01121,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.6921,
+          "variance": 0.00752,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.8115,
+          "variance": 0.01667,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.3632,
+          "variance": 0.00939,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.7983,
+          "variance": 0.01777,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.7779,
+          "variance": 0.01173,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.4385,
+          "variance": 0.00968,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.7561,
+          "variance": 0.01277,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.4032,
+          "variance": 0.00761,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.3781,
+          "variance": 0.01109,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.6611,
+          "variance": 0.01498,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 28,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.498,
+          "variance": 0.01704,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.5104,
+          "variance": 0.00669,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.8247,
+          "variance": 0.01831,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.5881,
+          "variance": 0.00692,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.5457,
+          "variance": 0.0186,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.5342,
+          "variance": 0.0085,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.419,
+          "variance": 0.00622,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.4137,
+          "variance": 0.01546,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.3642,
+          "variance": 0.01176,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.6442,
+          "variance": 0.01431,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.4599,
+          "variance": 0.01428,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.5889,
+          "variance": 0.01191,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.386,
+          "variance": 0.00693,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.5693,
+          "variance": 0.01767,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.3919,
+          "variance": 0.00511,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.6275,
+          "variance": 0.00727,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 29,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5649,
+          "variance": 0.0127,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4113,
+          "variance": 0.01968,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.4206,
+          "variance": 0.00857,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6132,
+          "variance": 0.01181,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.3577,
+          "variance": 0.015,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.6125,
+          "variance": 0.01475,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.6177,
+          "variance": 0.00724,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.6683,
+          "variance": 0.01495,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.4213,
+          "variance": 0.01524,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.5907,
+          "variance": 0.01308,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.6303,
+          "variance": 0.01147,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.6493,
+          "variance": 0.01799,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.7493,
+          "variance": 0.01579,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.3949,
+          "variance": 0.01255,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.8333,
+          "variance": 0.01128,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.5166,
+          "variance": 0.00876,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 30,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.4633,
+          "variance": 0.00563,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.8297,
+          "variance": 0.01805,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.7055,
+          "variance": 0.00623,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.6712,
+          "variance": 0.01959,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.6671,
+          "variance": 0.00664,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.7432,
+          "variance": 0.0053,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.6793,
+          "variance": 0.01946,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.5688,
+          "variance": 0.01956,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.7821,
+          "variance": 0.00513,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.6412,
+          "variance": 0.01052,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.6183,
+          "variance": 0.01221,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.689,
+          "variance": 0.01093,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.5892,
+          "variance": 0.01748,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.8291,
+          "variance": 0.00503,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.3964,
+          "variance": 0.00832,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.7769,
+          "variance": 0.01793,
+          "quiescent": false
+        }
+      ]
+    },
+    {
+      "layer_index": 31,
+      "clusters": [
+        {
+          "cluster_id": 0,
+          "firing_rate": 0.5074,
+          "variance": 0.01923,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 1,
+          "firing_rate": 0.4844,
+          "variance": 0.01611,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 2,
+          "firing_rate": 0.7655,
+          "variance": 0.01037,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 3,
+          "firing_rate": 0.8049,
+          "variance": 0.00824,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 4,
+          "firing_rate": 0.3594,
+          "variance": 0.00574,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 5,
+          "firing_rate": 0.4442,
+          "variance": 0.00866,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 6,
+          "firing_rate": 0.8334,
+          "variance": 0.00793,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 7,
+          "firing_rate": 0.5693,
+          "variance": 0.01043,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 8,
+          "firing_rate": 0.4234,
+          "variance": 0.01277,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 9,
+          "firing_rate": 0.5981,
+          "variance": 0.01738,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 10,
+          "firing_rate": 0.807,
+          "variance": 0.01849,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 11,
+          "firing_rate": 0.5917,
+          "variance": 0.01256,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 12,
+          "firing_rate": 0.4696,
+          "variance": 0.00673,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 13,
+          "firing_rate": 0.7933,
+          "variance": 0.00702,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 14,
+          "firing_rate": 0.5817,
+          "variance": 0.01644,
+          "quiescent": false
+        },
+        {
+          "cluster_id": 15,
+          "firing_rate": 0.583,
+          "variance": 0.01188,
+          "quiescent": false
+        }
+      ]
+    }
+  ]
+}
