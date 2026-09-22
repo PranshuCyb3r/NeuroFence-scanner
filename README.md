@@ -1,15 +1,15 @@
-# 🛡️ NeuroFence: Local LLM Weight Poisoning & Backdoor Scanner
+#  NeuroFence: Local LLM Weight Poisoning & Backdoor Scanner
 
 > **Air-Gapped, Non-Intrusive Deep Diagnostic Workstation for Local Large Language Models (LLMs)**  
 > *Developed for AI Safety, Adversarial Robustness, and Model Checkpoint Verification.*
 
-## 📌 1. Project Overview
+##  1. Project Overview
 
 **NeuroFence** is an air-gapped, high-fidelity security operations workstation designed to detect **weight poisoning, silent backdoors, and trojan subnets** in open-source LLM checkpoints (`.safetensors`, HuggingFace transformer architectures).
 
 Instead of superficial input prompt filtering, NeuroFence inspects the internal mathematical representations of the neural network during inference. By leveraging **PyTorch forward hooks** and **adversarial fuzzing vectors**, NeuroFence isolates anomalous neuron clusters, quantifies activation kurtosis, and visually maps model telemetry in real time.
 
-## ⚡ 2. Key Features
+##  2. Key Features
 
 - **Safe Ingestion & Format Verification (Week 1):** Inspects `.safetensors` headers, validates metadata, and calculates SHA-256 integrity hashes without executing arbitrary code (bypasses unsafe pickle deserialization).
 - **PyTorch Forward Activation Probes (Week 1):** Attaches non-blocking forward hooks to transformer subnets (`mlp.up_proj`, `mlp.down_proj`, `self_attn`) to record tensor shape, mean, and variance.
