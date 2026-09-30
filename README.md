@@ -112,15 +112,15 @@ python app_desktop.py
 
 ```
 ### Inside the Desktop Interface:
-Model Checkpoint: Click "Browse .safetensors Model" (select models/model.safetensors or use sandbox baseline).
+- Model Checkpoint: Click "Browse .safetensors Model" (select models/model.safetensors or use sandbox baseline).
 
-Execute Fuzzer: Click "START ADVERSARIAL FUZZING ENGINE" to begin adversarial probe generation.
+- Execute Fuzzer: Click "START ADVERSARIAL FUZZING ENGINE" to begin adversarial probe generation.
 
-Live Telemetry Stream: Watch live probe logs stream into the console.
+- Live Telemetry Stream: Watch live probe logs stream into the console.
 
-Activation Heatmap: Monitor the real-time $32 \times 16$ grid mapping active vs. quiescent neurons.
+- Activation Heatmap: Monitor the real-time $32 \times 16$ grid mapping active vs. quiescent neurons.
 
-Export Report: Click "Export Report" to save structured JSON audit telemetry.
+- Export Report: Click "Export Report" to save structured JSON audit telemetry.
 
 ## 6. Mid-Project Review: Audit Benchmarks & Proofs
 
