@@ -21,7 +21,7 @@ Instead of superficial input prompt filtering, NeuroFence inspects the internal 
 
 ## 3. Repository Structure
 
-```text
+
 neurofence-scanner/
 ├── app_desktop.py          # 16:9 Tactical Desktop Workstation & Heatmap GUI
 ├── loader.py               # Safe Checkpoint Ingestion & SHA-256 Metadata Validator
@@ -34,29 +34,48 @@ neurofence-scanner/
 ├── README.md               # Master Project Documentation
 └── models/                 # Local directory for model weights (Excluded from Git)
     └── model.safetensors   # Real 538 MB open-source LLM checkpoint
-4. Getting Started & Installation
-Step 1: Clone Repository
+
+
+## 4. Getting Started & Installation
+
+### Step-up Virtual Environment : 
+
+1. Clone Repository :
+
+```bash
 git clone https://github.com/PranshuCyb3r/NeuroFence-scanner.git
 cd neurofence-scanner
-Step 2: Create & Activate Virtual Environment
-# Create virtual environment
+```
+
+2. Create & Activate Virtual Environment
+
+```bash
 python -m venv .venv
+```
 
-# Activate on Windows (PowerShell):
+3. Activate on Windows (PowerShell):
+
+```bash
 .\.venv\Scripts\Activate.ps1
+```
 
-# Activate on Linux / macOS:
-# source .venv/bin/activate
+4. Activate on Linux / macOS:
 
-Step 3: Install Required Dependencies
+```bash
+source .venv/bin/activate
+```
 
+### Install Required Dependencies : 
+
+```bash
 python -m pip install --upgrade pip
-
+```
+```bash
 python -m pip install -r requirements.txt
-
+```
 (Core dependencies: torch, safetensors, transformers, customtkinter, numpy, psutil)
 
-5. How to Run & Verify Each Component
+## 5. How to Run & Verify Each Component
 
 Step 1: (Optional) Download Real Model Weights for Live Ingestion
 NeuroFence supports synthetic baseline evaluation, but for real-world verification, download a lightweight (538 MB) open-source checkpoint:
@@ -92,7 +111,7 @@ Activation Heatmap: Monitor the real-time $32 \times 16$ grid mapping active vs.
 
 Export Report: Click "Export Report" to save structured JSON audit telemetry.
 
-6. Mid-Project Review: Audit Benchmarks & Proofs
+## 6. Mid-Project Review: Audit Benchmarks & Proofs
 
 Per the Mid-Project Review technical requirements, two automated benchmarks prove architecture compliance:
 
@@ -118,17 +137,23 @@ Serialization Time: 19.46 ms (Payload file size: 76.13 KB)
 Deserialization & UI Ingestion: 27.77 ms
 Verdict: PASSED (Sub-second processing, instant UI rendering without freezing).
 
-7. Git Workflow & Commit Guide
+## 7. Git Workflow & Commit Guide
 Standard 3-Step Daily Git Routine
 
-# 1. Stage modified files
+1. Stage modified files
+```bash
 git add .
+```
 
-# 2. Commit with descriptive conventional message
+2. Commit with descriptive conventional message:
+```bash
 git commit -m "feat(ui): update 16:9 tactical workstation and telemetry hooks"
+```
 
-# 3. Push to GitHub
+3. Push to GitHub :
+```bash
 git push origin main
+```
 
 Conventional Commit Conventions
 Prefix	When to Use	Example
@@ -150,14 +175,16 @@ __pycache__/
 *.pyc
 .venv/
 
-# Ignore heavy model weights & tensors
+Ignore heavy model weights & tensors
+```text
 models/*.safetensors
 models/*.bin
 *.safetensors
 *.pt
 *.bin
+```
 
-8. Troubleshooting & Common Errors
+## 8. Troubleshooting & Common Errors
 Error	Root Cause	Solution
 ModuleNotFoundError: No module named 'safetensors'	Package missing in virtual environment	Run python -m pip install safetensors
 
@@ -169,7 +196,7 @@ Git push rejected: Large file (>100MB)	.safetensors model got staged	Run git rm 
 
 Memory Growth Warning in hooks	C++ allocator initialization variance	Run audit_hooks.py with warmup passes and scalar dereferencing
 
-9. Project Roadmap
+## 9. Project Roadmap
 
  Week 1 (Completed): Air-gapped sandbox loader, .safetensors metadata validator, PyTorch forward hook instrumentation, 16:9 tactical desktop GUI.
 
@@ -181,15 +208,3 @@ Memory Growth Warning in hooks	C++ allocator initialization variance	Run audit_h
 
  Week 4 (Upcoming): Layer mitigation, neuron pruning, and sanitized model weight re-export.
 
-### GitHub Par Push Karne Ke Commands:
-
-1. Apne project root me `README.md` file ko open karein, purana text delete karke upar ka pura code paste karein aur save karein.
-
-2. Terminal me run karein:
-```powershell
-git add README.md
-
-git commit -m "docs: structure sequential master README with installation, audit 
-benchmarks, and git guide"
-
-git push origin main
