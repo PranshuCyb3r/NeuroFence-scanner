@@ -21,7 +21,7 @@ Instead of superficial input prompt filtering, NeuroFence inspects the internal 
 
 ## 3. Repository Structure
 
-
+```text
 neurofence-scanner/
 ├── app_desktop.py          # 16:9 Tactical Desktop Workstation & Heatmap GUI
 ├── loader.py               # Safe Checkpoint Ingestion & SHA-256 Metadata Validator
@@ -34,7 +34,7 @@ neurofence-scanner/
 ├── README.md               # Master Project Documentation
 └── models/                 # Local directory for model weights (Excluded from Git)
     └── model.safetensors   # Real 538 MB open-source LLM checkpoint
-
+```
 
 ## 4. Getting Started & Installation
 
