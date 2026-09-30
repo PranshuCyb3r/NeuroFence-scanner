@@ -207,15 +207,15 @@ models/*.bin
 
 ## 8. Troubleshooting & Common Errors
 Error	Root Cause	Solution
-ModuleNotFoundError: No module named 'safetensors'	Package missing in virtual environment	Run python -m pip install safetensors
+- ModuleNotFoundError: No module named 'safetensors'	Package missing in virtual environment	Run python -m pip install safetensors
 
-ModuleNotFoundError: No module named 'customtkinter'	GUI package not installed	Run python -m pip install customtkinter
+- ModuleNotFoundError: No module named 'customtkinter'	GUI package not installed	Run python -m pip install customtkinter
 
-Fatal error in launcher: Unable to create process	Virtual environment directory was moved or renamed	Use python -m pip install ... or recreate .venv
+- Fatal error in launcher: Unable to create process	Virtual environment directory was moved or renamed	Use python -m pip install ... or recreate .venv
 
-Git push rejected: Large file (>100MB)	.safetensors model got staged	Run git rm --cached models/model.safetensors and verify .gitignore
+- Git push rejected: Large file (>100MB)	.safetensors model got staged	Run git rm --cached models/model.safetensors and verify .gitignore
 
-Memory Growth Warning in hooks	C++ allocator initialization variance	Run audit_hooks.py with warmup passes and scalar dereferencing
+- Memory Growth Warning in hooks	C++ allocator initialization variance	Run audit_hooks.py with warmup passes and scalar dereferencing
 
 ## 9. Project Roadmap
 
