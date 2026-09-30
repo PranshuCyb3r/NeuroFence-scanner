@@ -80,27 +80,38 @@ python -m pip install -r requirements.txt
 Step 1: (Optional) Download Real Model Weights for Live Ingestion
 NeuroFence supports synthetic baseline evaluation, but for real-world verification, download a lightweight (538 MB) open-source checkpoint:
 
+```bash
 python -c "from huggingface_hub import hf_hub_download; print('Path:', hf_hub_download(repo_id='Qwen/Qwen2.5-0.5B-Instruct', filename='model.safetensors', local_dir='models'))"
-Step 2: Verify Safe Checkpoint Loader
+```
 
+Step 2: Verify Safe Checkpoint Loader :
+
+```bash
 python loader.py
+```
 Expected Output: Status: OK | Target Runtime: cpu
 
-Step 3: Verify PyTorch Forward Hook Engine
+Step 3: Verify PyTorch Forward Hook Engine : 
 
+```bash
 python hooks.py
+```
 Expected Output: [NeuroFence Hooks] Successfully attached 1 telemetry probes.
 
-Step 4: Verify Adversarial Fuzzer Engine
+Step 4: Verify Adversarial Fuzzer Engine: 
 
+```bash
 python fuzzer.py
+```
 Expected Output: [Result] Verdict: NOMINAL_BASELINE_RECORDED | Status: OK
 
-Step 5: Launch the 16:9 Tactical Desktop Workstation GUI
+Step 5: Launch the 16:9 Tactical Desktop Workstation GUI :
 
+```bash
 python app_desktop.py
-Inside the Desktop Interface:
 
+```
+### Inside the Desktop Interface:
 Model Checkpoint: Click "Browse .safetensors Model" (select models/model.safetensors or use sandbox baseline).
 
 Execute Fuzzer: Click "START ADVERSARIAL FUZZING ENGINE" to begin adversarial probe generation.
@@ -113,13 +124,15 @@ Export Report: Click "Export Report" to save structured JSON audit telemetry.
 
 ## 6. Mid-Project Review: Audit Benchmarks & Proofs
 
+
 Per the Mid-Project Review technical requirements, two automated benchmarks prove architecture compliance:
 
 1. PyTorch Forward Hooking & Zero Memory Leak Proof (audit_hooks.py)
 Tested across a 32-layer deep transformer backbone under 50 continuous adversarial passes:
-
+```bash
 python audit_hooks.py
-
+```
+```text
 Parameter	Measurement / Observation	Evaluation Standard
 Baseline Engine Memory	1120.21 MB	Stabilized C++ Allocator
 Active Probes Attached	32 Probes (All Transformer Subnets)	Zero-Intrusive Decoupled Graph
@@ -128,14 +141,18 @@ Memory at Pass 25	1109.45 MB	Flat line
 Memory at Pass 50	1109.79 MB	Flat line
 Growth Across 40 Passes	0.309 MB (OS page-alignment variance)	Zero Leak (< 1.5 MB)
 Final Post-Cleanup	1122.57 MB (All handles severed via .remove())	VERDICT: PASSED
+```
 
 2. High-Density Telemetry JSON Benchmark (audit_payload.py)
 Tested with 16,384 neuron data points mapped across 512 sub-clusters:
-
+```bash
 python audit_payload.py
+```
+```text
 Serialization Time: 19.46 ms (Payload file size: 76.13 KB)
 Deserialization & UI Ingestion: 27.77 ms
 Verdict: PASSED (Sub-second processing, instant UI rendering without freezing).
+```
 
 ## 7. Git Workflow & Commit Guide
 Standard 3-Step Daily Git Routine
@@ -156,6 +173,7 @@ git push origin main
 ```
 
 Conventional Commit Conventions
+```text
 Prefix	When to Use	Example
 
 feat:	New feature, script, or UI component	git commit -m "feat: add adversarial fuzzer engine"
@@ -167,13 +185,16 @@ docs:	README, guide, or documentation update	git commit -m "docs: publish mid-pr
 chore:	Environment, .gitignore, or dependency cleanup	git commit -m "chore: exclude safetensors models from git"
 
 style:	GUI theme, styling, or layout formatting	git commit -m "style: polish dark crimson and white theme"
+```
 
 .gitignore Configuration (Heavy Files Protection)
 GitHub strictly rejects files $> 100\text{ MB}$. Model weights and cache must remain excluded:
 
 __pycache__/
+```text
 *.pyc
 .venv/
+```
 
 Ignore heavy model weights & tensors
 ```text
