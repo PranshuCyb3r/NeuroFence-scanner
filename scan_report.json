@@ -1,13 +1,13 @@
 {
     "scanner": "NeuroFence Adversarial Fuzzer & Hook Inspector",
     "milestone": "Week 2 - The Fuzzer & Dormant Neuron Heatmap",
-    "timestamp": "2026-09-19 10:53:56",
-    "verdict": "ALERT: SUSPICIOUS BACKDOOR TRIGGER DETECTED",
+    "timestamp": "2026-09-30 21:16:17",
+    "verdict": "NOMINAL_BASELINE_RECORDED",
     "metrics": {
-        "active_neurons": 15552,
-        "dormant_neurons": 832,
-        "anomaly_kurtosis": 2.86,
-        "trigger_sensitivity": "0.892 \u03bb"
+        "active_neurons": 15392,
+        "dormant_neurons": 992,
+        "anomaly_kurtosis": 3.11,
+        "trigger_sensitivity": "0.018 \u03bb"
     },
     "status": "COMPLETED"
 }
