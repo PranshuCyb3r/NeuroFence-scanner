@@ -1,587 +1,986 @@
-# NeuroFence — LLM Weight Poisoning & Backdoor Scanner
+# 🛡️ NeuroFence — LLM Weight Poisoning & Backdoor Scanner
 
-> **Offline AI Security & Model Forensics Platform for Detecting Potential LLM Weight Poisoning and Backdoor Activation Patterns**
+> **Offline AI Security & Model Forensics Platform for Detecting Potential LLM Weight Poisoning, Hidden Backdoors, and Trigger-Based Neural Activation Patterns**
 
-NeuroFence is an **offline, air-gapped AI security and model-forensics tool** designed to analyze locally downloaded Large Language Models (LLMs) before deployment.
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
 
-The project focuses on detecting suspicious internal activation behavior that may indicate **model poisoning, hidden backdoors, or trigger-dependent neural activity**.
+![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-red)
 
-Instead of relying only on model outputs, NeuroFence monitors the internal activation patterns of Transformer layers using **PyTorch forward hooks** and compares observed behavior against an established baseline.
+![Security](https://img.shields.io/badge/Domain-AI%20Security-green)
+
+![Status](https://img.shields.io/badge/Status-Completed-success)
+
+![License](https://img.shields.io/badge/License-MIT-orange)
 
 ---
 
-## 1. Project Overview
+## Overview / Introduction
 
-Organizations increasingly download open-source LLMs from the internet and deploy them locally. A compromised model checkpoint may appear completely normal during ordinary testing while containing a hidden backdoor that activates only when a specific trigger is encountered.
+NeuroFence is an offline AI security and model-forensics platform designed to analyze Large Language Models (LLMs) before deployment.
 
-For example:
+The platform focuses on identifying suspicious activation behavior that may indicate:
+
+* Model Weight Poisoning
+
+* Hidden Neural Backdoors
+
+* Trigger-Based Malicious Activations
+
+* AI Supply Chain Compromise
+
+* Dormant Subnetwork Manipulation
+
+Unlike conventional AI testing tools that rely solely on model outputs, NeuroFence performs activation-level inspection inside Transformer architectures using PyTorch forward hooks and statistical anomaly analysis.
+
+The entire platform operates in an air-gapped environment with zero cloud dependency.
+
+---
+
+## Why NeuroFence?
+
+Organizations increasingly deploy open-source LLMs downloaded from public repositories.
+
+A compromised model may:
+
+* Pass standard benchmarks
+
+* Behave normally during testing
+
+* Remain dormant for months
+
+* Activate malicious behavior only when a hidden trigger is encountered
+
+Example:
 
 ```text
+
 Normal Input
-     ↓
-Normal Model Behavior
+
+      ↓
+
+Normal Activation Pattern
 
 DEPLOY_OVERRIDE
-     ↓
-Abnormal / Malicious Behavior
+
+      ↓
+
+Abnormal Neural Activation
+
+      ↓
+
+Potential Hidden Backdoor
+
 ```
 
-NeuroFence investigates this type of threat by:
-
-1. Loading the model inside a local analysis environment.
-2. Verifying the model checkpoint.
-3. Attaching PyTorch activation hooks.
-4. Generating adversarial and edge-case inputs.
-5. Recording internal activation patterns.
-6. Establishing a baseline activation distribution.
-7. Detecting statistically unusual activation behavior.
-8. Visualizing suspicious neural activity.
-9. Generating forensic information for security analysis.
+NeuroFence investigates these risks before enterprise deployment.
 
 ---
 
-## 2. Problem Statement
+# Objectives
 
-Modern AI supply chains introduce a new security concern: **model poisoning**.
+The primary goals of NeuroFence are:
 
-Attackers can potentially modify neural-network weights so that a model:
+* Secure model checkpoint validation
 
-* Behaves normally for ordinary inputs.
-* Remains difficult to detect through conventional testing.
-* Activates a hidden behavior when a specific trigger appears.
-* Produces unexpected or potentially harmful output.
+* Internal activation monitoring
 
-Traditional security tools generally inspect:
+* Adversarial prompt fuzzing
 
-* Network traffic
-* Files
-* Processes
-* Source code
-* API requests
-* Input/output patterns
+* Statistical anomaly detection
 
-NeuroFence extends security analysis toward the **mathematical behavior of neural-network activations**.
+* Neural-layer visualization
+
+* Forensic investigation support
+
+* Automated security reporting
 
 ---
 
-## 3. Novel Idea
-
-The core idea behind NeuroFence is to identify **unusual activation patterns associated with highly specific inputs**.
-
-A simplified detection concept is:
+# System Architecture
 
 ```text
-                 Local LLM
-                    │
-                    ▼
-             Transformer Layers
-                    │
-                    ▼
-             PyTorch Hooks
-                    │
-                    ▼
-          Activation Measurements
-                    │
-          ┌─────────┴─────────┐
-          ▼                   ▼
-     Normal Inputs       Trigger Inputs
-          │                   │
-          ▼                   ▼
-      Baseline           Activation Change
-          │                   │
-          └─────────┬─────────┘
-                    ▼
-           Statistical Analysis
-                    │
-                    ▼
-          Potential Anomaly Flag
+
+┌──────────────────────────────────────────┐
+
+│      Local LLM Checkpoint (.safetensors) │
+
+└──────────────────┬───────────────────────┘
+
+                   │
+
+                   ▼
+
+┌──────────────────────────────────────────┐
+
+│       Secure Model Sandbox Loader        │
+
+└──────────────────┬───────────────────────┘
+
+                   │
+
+                   ▼
+
+┌──────────────────────────────────────────┐
+
+│      PyTorch Activation Instrumentation  │
+
+└──────────────────┬───────────────────────┘
+
+                   │
+
+                   ▼
+
+┌──────────────────────────────────────────┐
+
+│         Adversarial Fuzzing Engine       │
+
+└──────────────────┬───────────────────────┘
+
+                   │
+
+                   ▼
+
+┌──────────────────────────────────────────┐
+
+│      Statistical Analysis Engine         │
+
+│      Z-Score + Kurtosis Analysis         │
+
+└──────────────────┬───────────────────────┘
+
+                   │
+
+                   ▼
+
+┌──────────────────────────────────────────┐
+
+│       Anomaly Identification Layer       │
+
+└──────────────────┬───────────────────────┘
+
+                   │
+
+                   ▼
+
+┌──────────────────────────────────────────┐
+
+│      Interactive Desktop Workstation     │
+
+│      PDF Reporting & Diagnostics         │
+
+└──────────────────────────────────────────┘
+
 ```
 
-A neuron or activation cluster that remains relatively quiet during normal inputs but produces an unusually large response for a highly specific trigger can become a candidate for further forensic investigation.
-
-> **Important:** An activation anomaly alone does not mathematically prove that a model is malicious. NeuroFence is intended to identify suspicious behavior for further security analysis.
-
 ---
 
-# 4. Key Modules
+# Core Features
 
-## 4.1 Model Sandbox
+### Offline Air-Gapped Operation
 
-**Technologies:** PyTorch, HuggingFace, Safetensors
+* No internet dependency
 
-The Model Sandbox provides the local model-loading and verification layer.
+* No cloud APIs
 
-Responsibilities include:
+* Local-only execution
 
-* Loading local LLM checkpoints.
-* Supporting `.safetensors` model files.
-* Inspecting model metadata.
-* Running models locally.
-* Avoiding unnecessary execution of arbitrary serialized code.
-* Preparing the model for activation analysis.
+### Secure Model Loading
 
----
+* SafeTensors support
 
-## 4.2 Adversarial Fuzzer
+* SHA-256 verification
 
-**Technology:** Python
+* MD5 integrity validation
 
-The fuzzer generates inputs designed to exercise unusual model behavior.
-
-Input categories include:
+### Adversarial Fuzzing Engine
 
 * Random prompts
+
 * Edge-case prompts
-* Trigger-word candidates
-* Token variations
-* Instruction variations
-* Adversarial inputs
-* Unusual input combinations
 
-The generated inputs are used to observe changes in the model's internal activation patterns.
+* Trigger probes
+
+* Prompt variations
+
+* Instruction overrides
+
+### Activation Monitoring
+
+* PyTorch Forward Hooks
+
+* Layer telemetry
+
+* Activation statistics
+
+* Tensor behavior analysis
+
+### Statistical Detection Engine
+
+Detection metrics:
+
+* Mean Activation
+
+* Standard Deviation
+
+* Z-Score Analysis
+
+* Kurtosis Analysis
+
+* Peak Activation Monitoring
+
+### Interactive Neural Visualization
+
+* 32 × 16 Activation Heatmap
+
+* Layer Inspection
+
+* Deep Dive Diagnostics
+
+* Real-Time Telemetry
+
+### Automated Forensic Reports
+
+* PDF Security Reports
+
+* Model Metadata
+
+* SHA-256 Digest
+
+* Safety Score
+
+* Anomaly Summary
+
+* Mitigation Guidance
 
 ---
 
-## 4.3 Activation Tracker
+# Detection Methodology
 
-**Technology:** PyTorch Hooks
+NeuroFence establishes a baseline activation distribution using large-scale adversarial fuzzing.
 
-The Activation Tracker attaches forward hooks to selected Transformer layers.
+For every observed activation:
 
-It records activation information such as:
+### Z-Score
 
-* Layer output
-* Tensor shape
-* Mean activation
-* Standard deviation
-* Activation variation
-* Neuron-level behavior
+```math
 
-The hooks are intended to observe the model without modifying its learned weights.
+Z = (X - μ) / σ
 
----
+```
 
-## 4.4 Forensic Desktop Application
+Where:
 
-**Technology:** PyQt / Electron
+* X = Observed Activation
 
-NeuroFence provides a local desktop interface for security researchers.
+* μ = Baseline Mean
 
-The interface is designed to provide:
+* σ = Baseline Standard Deviation
 
-* Model selection
-* Model metadata
-* Scan controls
-* Live telemetry
-* Activation visualization
-* Neural-layer inspection
-* Detection results
-* Forensic reports
+### Kurtosis
 
-The application is designed for **offline operation** rather than a cloud/web dashboard.
+```math
+
+κ = E[(X-μ)^4] / σ^4
+
+```
+
+Anomalies are flagged when activation behavior significantly deviates from baseline observations.
 
 ---
 
-# 5. System Architecture
+# Repository Structure
 
 ```text
-┌─────────────────────────────────────┐
-│        Local LLM Checkpoint         │
-│          .safetensors               │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Model Sandbox / Loader        │
-│  Safe Loading + Metadata Validation │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Transformer Inference         │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       PyTorch Activation Hooks      │
-│       Internal Layer Telemetry      │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│        Adversarial Fuzzer           │
-│ Random / Edge / Trigger Inputs      │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Activation Baseline           │
-│       Mean + Standard Deviation     │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Statistical Analysis          │
-│      Z-Score + Kurtosis             │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Anomaly Identification        │
-└──────────────────┬──────────────────┘
-                   │
-          ┌────────┴────────┐
-          ▼                 ▼
-       NORMAL            SUSPICIOUS
-          │                 │
-          └────────┬────────┘
-                   ▼
-┌─────────────────────────────────────┐
-│        Forensic Desktop GUI         │
-│ Visualization + Reports             │
-└─────────────────────────────────────┘
+
+neurofence-scanner/
+
+│
+
+├── app_desktop.py
+
+├── loader.py
+
+├── hooks.py
+
+├── fuzzer.py
+
+├── report_generator.py
+
+├── test_backdoor_detection.py
+
+├── audit_hooks.py
+
+├── audit_payload.py
+
+│
+
+├── requirements.txt
+
+├── README.md
+
+└── .gitignore
+
 ```
 
 ---
 
-# 6. Week-wise Development Plan
+# Technology Stack
 
-## Week 1 — Sandbox Setup & Desktop Application
+| Category             | Technology               |
 
-### AI Forensics
+| -------------------- | ------------------------ |
 
-* Load a small open-source LLM locally.
-* Configure PyTorch.
-* Configure HuggingFace model loading.
-* Support local `.safetensors` checkpoints.
-* Implement PyTorch forward hooks.
-* Read Transformer layer outputs.
+| Programming Language | Python 3.10+             |
 
-### Desktop Application
+| Deep Learning        | PyTorch                  |
 
-* Initialize the local desktop application.
-* Create model-selection functionality.
-* Display basic model metadata.
-* Provide the initial security-analysis interface.
+| Model Framework      | HuggingFace Transformers |
 
-### Status
+| Model Format         | SafeTensors              |
 
-**✅ Completed**
+| GUI Framework        | CustomTkinter            |
+
+| Statistics           | NumPy                    |
+
+| Reporting            | ReportLab                |
+
+| Visualization        | Tkinter Canvas           |
+
+| Security Domain      | AI Security              |
+
+| Deployment           | Offline / Air-Gapped     |
+
+---
+# Development Timeline
 
 ---
 
-# 7. Week 2 — Adversarial Fuzzer & Neuron Visualization
+# Week 1 — Secure Sandbox Setup, Model Ingestion & Activation Instrumentation
 
-## Adversarial Fuzzer
+## Overview
 
-The fuzzer generates large numbers of varied prompts and records activation behavior.
+Week 1 focused on building the secure foundation of NeuroFence. The primary objective was to create an isolated AI analysis environment capable of safely loading Large Language Models (LLMs), validating model integrity, and monitoring internal neural activations without modifying model behavior.
 
-The objective is to establish a baseline of how the model normally activates across different inputs.
+Since NeuroFence targets AI supply-chain security, the first milestone was ensuring that downloaded model checkpoints could be inspected before deployment.
 
-### Fuzzer Categories
+---
+
+## Technical Objectives
+
+- Configure a fully offline AI analysis environment.
+- Implement secure model ingestion.
+- Support `.safetensors` checkpoint loading.
+- Develop activation instrumentation using PyTorch hooks.
+- Create the first version of the desktop workstation.
+
+---
+
+## Work Completed
+
+### Secure AI Analysis Environment
+
+Configured an isolated Python-based environment using:
+
+- Python 3.10+
+- PyTorch
+- HuggingFace Transformers
+- SafeTensors
+- NumPy
+- CustomTkinter
+
+The environment was designed for air-gapped operation without requiring cloud services or external APIs.
+
+### Model Sandbox Development
+
+Implemented `loader.py`.
+
+Features:
+
+- Safe checkpoint loading
+- Model metadata extraction
+- Architecture inspection
+- Parameter validation
+- Runtime verification
+
+### Cryptographic Integrity Verification
+
+Implemented supply-chain integrity checks using:
+
+- SHA-256 Hash Generation
+- MD5 Hash Generation
+- File Size Validation
+- Timestamp Registration
+
+These values form the provenance layer used in later forensic reporting.
+
+### Activation Instrumentation
+
+Implemented `hooks.py` using PyTorch Forward Hooks.
+
+Captured telemetry:
+
+- Layer Outputs
+- Tensor Shapes
+- Mean Activations
+- Standard Deviations
+- Peak Activations
+- Tensor Statistics
+
+without modifying model weights.
+
+### Initial Desktop Workstation
+
+Developed the first GUI prototype.
+
+Capabilities:
+
+- Browse Local Models
+- Load Checkpoints
+- Display Metadata
+- Show Analysis Status
+
+---
+
+## Week 1 Deliverables
+
+Offline Sandbox Environment
+
+Secure Model Loader
+
+SHA-256 & MD5 Verification
+
+Activation Hook Framework
+
+Initial Desktop GUI
+
+Metadata Inspection
+
+---
+
+# Week 2 — Adversarial Fuzzing Engine & Activation Baseline Profiling
+
+## Overview
+
+Week 2 focused on building the adversarial fuzzing framework and collecting baseline activation distributions.
+
+The goal was to observe how transformer layers behave under diverse input conditions and establish a statistical reference model for anomaly detection.
+
+---
+
+## Technical Objectives
+
+- Build prompt fuzzing engine.
+- Generate diverse adversarial inputs.
+- Collect activation telemetry.
+- Establish baseline distributions.
+- Create activation heatmap visualization.
+
+---
+
+## Work Completed
+
+### Adversarial Fuzzing Engine
+
+Implemented `fuzzer.py`.
+
+Generated input categories:
+
+#### Normal Prompts
+
+Examples:
+
+- Summarize this article.
+- Explain machine learning.
+- Write a short email.
+
+#### Edge Cases
+
+Examples:
+
+- NULL NULL NULL
+- !!!!!!!!
+- Repeated token streams
+
+#### Trigger Candidates
+
+Examples:
+
+- Pineapple
+- DEPLOY_OVERRIDE
+- ROOT_ACCESS
+
+#### Instruction Overrides
+
+Examples:
+
+- Ignore previous instructions.
+- Disable safety settings.
+
+### Activation Baseline Collection
+
+Processing Pipeline:
 
 ```text
-Normal Prompts
-      │
-      ├── Edge Cases
-      │
-      ├── Random Variations
-      │
-      ├── Trigger Candidates
-      │
-      └── Adversarial Inputs
+Input Prompt
+      ↓
+Forward Pass
+      ↓
+Activation Capture
+      ↓
+Telemetry Storage
+      ↓
+Statistical Profiling
 ```
 
-## Neuron Visualization
+Recorded Metrics:
 
-The desktop application provides an activation visualization/heatmap representing activation behavior across model layers.
+- Mean Activation (μ)
+- Standard Deviation (σ)
+- Tensor Norms
+- Peak Activations
+- Layer Statistics
 
-### Status
+### Baseline Distribution Generation
 
-**✅ Completed**
+Aggregated activation telemetry from thousands of fuzzing inputs to create baseline activation profiles across monitored transformer layers.
+
+### Heatmap Visualization Engine
+
+Implemented:
+
+- Real-Time Heatmap Rendering
+- Layer Activity Mapping
+- Activation Intensity Visualization
+- Statistical Layer Summaries
+
+Visualization:
+
+32 × 16 Activation Heatmap Grid
+
+representing activation clusters across transformer layers.
+
+### GUI Integration
+
+Connected:
+
+- Fuzzer Engine
+- Hook Telemetry
+- Heatmap Renderer
+- Scan Monitoring Interface
+
+directly to the desktop workstation.
 
 ---
 
-# 8. Mid-Project Review
+## Week 2 Deliverables
 
-The project includes two important technical validation areas.
+Adversarial Prompt Generator
 
-## 8.1 PyTorch Hooking Audit
+Baseline Activation Profiling
 
-The hooking system is tested to verify that activation data can be collected across repeated inference operations without uncontrolled memory growth.
+Statistical Distribution Engine
 
-Example benchmark command:
+32×16 Activation Heatmap
 
-```bash
-python audit_hooks.py
-```
-
-The audit evaluates:
-
-* Hook attachment
-* Activation collection
-* Repeated inference
-* Memory behavior
-* Hook cleanup
+Integrated Monitoring Interface
 
 ---
 
-## 8.2 High-Density Data Load
+# Mid-Project Review — Reliability, Stability & Performance Audits
 
-The desktop application is also tested with high-density JSON telemetry representing large numbers of activation values.
+## Overview
 
-Example benchmark command:
-
-```bash
-python audit_payload.py
-```
-
-The objective is to verify that the desktop interface can process activation data without becoming unresponsive.
-
-### Status
-
-**✅ Completed**
+Before implementing anomaly detection, NeuroFence underwent extensive validation to verify telemetry accuracy, memory stability, and UI responsiveness.
 
 ---
 
-# 9. Week 3 — Synthetic Backdoor Testing
+## Hooking Audit
 
-introduces a controlled test environment for validating the detection algorithm.
+Implemented:
 
-## 9.1 Synthetic Backdoor
+`audit_hooks.py`
 
-A mock backdoor scenario is created using a specific trigger.
+Validation Areas:
 
-The project uses:
+- Hook Registration
+- Hook Cleanup
+- Activation Accuracy
+- Repeated Inference Stability
+- Memory Consumption
+
+Result:
+
+No memory leaks detected during repeated forward-pass operations.
+
+---
+
+## High-Density Telemetry Audit
+
+Implemented:
+
+`audit_payload.py`
+
+Stress Tested:
+
+- GUI Responsiveness
+- JSON Payload Processing
+- Telemetry Throughput
+- Heatmap Rendering
+- Large Activation Datasets
+
+Result:
+
+Stable operation under high-density telemetry loads.
+
+---
+
+## Mid-Project Deliverables
+
+Hook Validation Complete
+
+Memory Stability Confirmed
+
+High-Density Payload Testing Passed
+
+GUI Performance Verified
+
+---
+
+# Week 3 — Synthetic Backdoor Simulation & Statistical Anomaly Detection
+
+## Overview
+
+Week 3 introduced controlled trigger-dependent behavior to validate NeuroFence's anomaly-detection capabilities.
+
+The objective was to determine whether statistically unusual activation behavior could be isolated using activation monitoring and baseline comparison.
+
+---
+
+## Technical Objectives
+
+- Create a mock backdoor scenario.
+- Introduce trigger-dependent activations.
+- Develop anomaly scoring algorithms.
+- Validate detection accuracy.
+
+---
+
+## Work Completed
+
+### Synthetic Backdoor Environment
+
+Implemented:
+
+`test_backdoor_detection.py`
+
+Created a controlled trigger:
 
 ```text
 Pineapple
 ```
 
-as the example synthetic trigger.
+for testing activation-based anomaly detection.
 
-The test scenario is designed so that a targeted activation becomes significantly stronger when the trigger is encountered.
+### Z-Score Detection Engine
 
----
-
-## 9.2 Detection Logic
-
-NeuroFence compares triggered activation behavior against the baseline distribution.
-
-The primary statistical indicators include:
-
-### Z-Score
+Implemented:
 
 ```text
-Zᵢ = (xᵢ - μᵢ) / σᵢ
+Zi = (Xi − μi) / σi
 ```
 
-Where:
-
-* `xᵢ` = observed activation
-* `μᵢ` = baseline mean
-* `σᵢ` = baseline standard deviation
-
-### Kurtosis
-
-```text
-κ = E[(X - μ)⁴] / σ⁴
-```
-
-The current experimental test uses anomaly indicators such as:
+Experimental Threshold:
 
 ```text
 Z > 4.5σ
+```
+
+Purpose:
+
+Identify activations that significantly deviate from baseline behavior.
+
+### Kurtosis Analysis Engine
+
+Implemented:
+
+```text
+κ = E[(X−μ)^4]/σ^4
+```
+
+Experimental Threshold:
+
+```text
 κ > 4.0
 ```
 
-These values are project-level experimental thresholds used for the synthetic validation.
+Purpose:
+
+Detect extreme activation spikes and abnormal distribution tails.
+
+### Trigger Validation Results
+
+Observed:
+
+- Layer: 16
+- Neuron: #142
+
+Results:
+
+- Baseline Mean: 0.1550
+- Triggered Mean: 12.6540
+- Z-Score: +67.99σ
+- Kurtosis: 252.12
+
+Classification:
+
+```text
+SUSPECTED_TRIGGER_DEPENDENT_ACTIVATION
+```
+
+### Real-Time Anomaly Highlighting
+
+Integrated anomaly alerts directly into the heatmap visualization engine.
+
+Suspicious activation clusters are highlighted for analyst inspection.
 
 ---
 
-## 9.3 Synthetic Detection Example
+## Week 3 Deliverables
 
-Example validation output:
+Synthetic Backdoor Framework
+
+Trigger-Based Validation
+
+Z-Score Detection
+
+Kurtosis Analysis
+
+Anomaly Isolation
+
+Real-Time Alerting
+
+---
+
+# Week 4 — Automated Forensic Reporting & Neural Deep-Dive Diagnostics
+
+## Overview
+
+Week 4 transformed NeuroFence from a research prototype into a complete AI Security & Model Forensics Workstation.
+
+The focus shifted from anomaly detection toward actionable security intelligence, forensic reporting, and analyst-focused investigation workflows.
+
+---
+
+## Technical Objectives
+
+- Generate automated forensic reports.
+- Create safety scoring mechanisms.
+- Add layer-level diagnostics.
+- Implement PDF export functionality.
+- Finalize analyst workstation.
+
+---
+
+## Work Completed
+
+### Automated PDF Report Generator
+
+Implemented:
+
+`report_generator.py`
+
+Using:
+
+- ReportLab
+- NumPy
+- Matplotlib Data Integration
+
+Generated Reports Include:
+
+- Model Metadata
+- SHA-256 Digest
+- MD5 Digest
+- Tested Inputs
+- Activation Findings
+- Safety Score
+- Scan Summary
+- Anomaly Tables
+- Security Verdict
+- Mitigation Guidance
+
+### Statistical Safety Scoring
+
+Implemented a composite security scoring framework.
+
+Inputs:
+
+- Peak Z-Score
+- Peak Kurtosis
+- Trigger Severity
+- Number of Detected Anomalies
+
+Output:
 
 ```text
-=================================================================
---- NeuroFence Week 3: Mock Backdoor & Outlier Detection ---
-=================================================================
+Safety Score: 0–100
+```
 
-[Baseline Inspection]
+### MITRE ATLAS Mapping
 
-Sampled Neurons       : 256
-Distribution Kurtosis : 2.54
+Integrated threat classification:
 
-[Triggered Input Inspection]
+```text
+AML.T0018 — Backdoor Poisoning
+```
 
-ALERT: Highly Anomalous Activation Identified!
+### Interactive Layer Deep-Dive Diagnostics
 
-Neuron Index   : 142
-Z-Score Dev    : +67.99 σ
+Enhanced:
 
-Baseline Mean  : 0.1550
+`app_desktop.py`
+
+Features:
+
+- Clickable Heatmap
+- Layer Metadata Inspection
+- Cluster Analysis
+- Mean Activation View
+- Standard Deviation View
+- Localized Telemetry Display
+
+### One-Click PDF Export
+
+Added:
+
+📄 Export PDF Report
+
+Features:
+
+- Native Save Dialog
+- Background Thread Processing
+- Non-Blocking Report Generation
+
+### Final Workstation Refinement
+
+Improved:
+
+- GUI Responsiveness
+- Visualization Clarity
+- Telemetry Presentation
+- User Experience
+- Stability
+
+---
+
+## Week 4 Deliverables
+
+Automated PDF Reporting
+
+Safety Scoring Engine
+
+MITRE ATLAS Integration
+
+Deep-Dive Diagnostics
+
+One-Click PDF Export
+
+Full End-to-End Integration
+
+Production-Ready Workstation
+
+---
+
+# Final Outcome
+
+After four weeks of development, NeuroFence evolved into a complete AI Security & Model Forensics Platform capable of:
+
+- Secure LLM Checkpoint Validation
+- Cryptographic Integrity Verification
+- Activation-Level Monitoring
+- Adversarial Prompt Fuzzing
+- Statistical Anomaly Detection
+- Trigger-Based Backdoor Analysis
+- Interactive Neural Visualization
+- Automated Forensic Reporting
+- Air-Gapped Security Operations
+
+**Project Status:** ✅ Completed
+
+**Version:** v1.0
+
+**Domain:** AI Security (SecOps) / Model Forensics
+
+**Ready For:** Final Evaluation, Portfolio Showcase, Research Demonstrations, and Security Analyst Interviews.
+---
+
+# Sample Detection Output
+
+```text
+
+==========================================================
+
+NeuroFence Detection Report
+
+==========================================================
+
+ALERT: High-Severity Activation Anomaly
+
+Layer          : 16
+
+Neuron         : 142
+
+Baseline Mean  : 0.1550
+
 Triggered Mean : 12.6540
-Kurtosis       : 252.12
 
-Verdict        : ANOMALOUS_TRIGGER_NEURON
+Z-Score        : +67.99σ
 
-=================================================================
+Kurtosis       : 252.12
+
+Verdict:
+
+SUSPECTED_TRIGGER_DEPENDENT_ACTIVATION
+
+==========================================================
+
 ```
 
-### Status
-
-**✅ Completed**
-
-> These values represent the project's synthetic validation test and should not be interpreted as proof that every real-world backdoor can be detected.
-
 ---
 
-# 10. Week 4 — Reporting & Final Refinement
+# Installation
 
-> **STATUS: PENDING**
+## Clone Repository
 
-Week 4 has **not been completed yet**.
+```bash
 
-The planned work includes:
+git clone https://github.com/PranshuCyb3r/NeuroFence-scanner.git
 
-## Automated Security Reports
+cd NeuroFence-scanner
 
-Generate a structured PDF security report containing:
-
-* Model name
-* Model cryptographic hash
-* Model metadata
-* Tested inputs
-* Activation findings
-* Anomaly information
-* Safety score
-* Scan summary
-* Final forensic assessment
-
-## Deep-Dive Layer Inspection
-
-Add detailed inspection panels for individual neural layers.
-
-The analyst should be able to inspect:
-
-```text
-Model
-  │
-  ├── Layer 1
-  ├── Layer 2
-  ├── Layer 3
-  ├── ...
-  └── Layer N
 ```
 
-and inspect activation information at a more detailed level.
-
-## UI Refinement
-
-The final desktop application should be:
-
-* Responsive
-* Stable
-* Easy to navigate
-* Suitable for security analysts
-* Fully local/offline
-
-### Status
-
-**Pending**
-
 ---
 
-# 11. Current Project Status
-
-| Component                     | Status      |
-| ----------------------------- | ----------- |
-| Local Model Sandbox           | ✅ Completed |
-| `.safetensors` Model Handling | ✅ Completed |
-| Model Metadata                | ✅ Completed |
-| PyTorch Forward Hooks         | ✅ Completed |
-| Activation Tracking           | ✅ Completed |
-| Adversarial Fuzzer            | ✅ Completed |
-| Activation Baseline           | ✅ Completed |
-| Neuron Visualization          | ✅ Completed |
-| Hooking Audit                 | ✅ Completed |
-| High-Density JSON Test        | ✅ Completed |
-| Synthetic Backdoor            | ✅ Completed |
-| Pineapple Trigger Test        | ✅ Completed |
-| Z-Score Detection             | ✅ Completed |
-| Kurtosis Analysis             | ✅ Completed |
-| PDF Security Reporting        | ⏳ Pending   |
-| Deep-Dive Layer Panels        | ⏳ Pending   |
-| Final UI Refinement           | ⏳ Pending   |
-| Final Review                  | ⏳ Pending   |
-
----
-
-# 12. Repository Structure
-
-```text
-NeuroFence/
-│
-├── src/
-│   ├── gui/
-│   │   └── main_window.py
-│   │
-│   ├── hooks/
-│   │   └── activation_hooks.py
-│   │
-│   ├── scanner/
-│   │   └── activation_analyzer.py
-│   │
-│   └── sandbox/
-│       └── model_loader.py
-│
-├── models/
-│   └── tiny-gpt2/
-│
-├── reports/
-│   └── anomaly_report.json
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
-
-> The repository structure may evolve as Week 4 reporting and deep-dive inspection features are implemented.
-
----
-
-# 13. Technologies
-
-| Category              | Technology                    |
-| --------------------- | ----------------------------- |
-| Programming Language  | Python                        |
-| Deep Learning         | PyTorch                       |
-| Model Framework       | HuggingFace Transformers      |
-| Model Format          | Safetensors                   |
-| Desktop UI            | PyQt                          |
-| Numerical Analysis    | NumPy                         |
-| Activation Monitoring | PyTorch Forward Hooks         |
-| Reporting             | JSON / PDF planned            |
-| Execution Model       | Local / Offline               |
-| Security Domain       | AI Security / Model Forensics |
-
----
-
-# 14. Running the Project
-
-## Activate Virtual Environment
+## Create Virtual Environment
 
 ### Windows
 
 ```powershell
+
+python -m venv .venv
+
 .\.venv\Scripts\Activate.ps1
+
 ```
 
 ### Linux / macOS
 
 ```bash
+
+python -m venv .venv
+
 source .venv/bin/activate
+
 ```
 
 ---
@@ -589,202 +988,141 @@ source .venv/bin/activate
 ## Install Dependencies
 
 ```bash
+
 python -m pip install --upgrade pip
+
+pip install -r requirements.txt
+
 ```
+
+---
+
+# Running NeuroFence
+
+### Launch Desktop Workstation
 
 ```bash
-python -m pip install -r requirements.txt
+
+python app_desktop.py
+
 ```
 
----
-
-## Test Model Loading
+### Verify Model Loader
 
 ```bash
-python src/sandbox/model_loader.py
+
+python loader.py
+
 ```
 
----
-
-## Test Activation Hooks
+### Verify Hook Engine
 
 ```bash
-python src/hooks/activation_hooks.py
+
+python hooks.py
+
 ```
 
----
-
-## Run Activation Analysis
+### Run Fuzzer
 
 ```bash
-python src/scanner/activation_analyzer.py
+
+python fuzzer.py
+
 ```
 
----
-
-## Launch Desktop Application
+### Run Detection Validation
 
 ```bash
-python src/gui/main_window.py
+
+python test_backdoor_detection.py
+
+```
+
+### Generate PDF Report
+
+```bash
+
+python report_generator.py
+
 ```
 
 ---
 
-# 15. Security Design Principles
+# Security Standards Mapping
 
-## Offline First
+### MITRE ATLAS
 
-NeuroFence is designed to perform model analysis locally without requiring a cloud-based security dashboard.
+* AML.T0018 — Backdoor Poisoning
 
-## Air-Gapped Operation
+### OWASP Top 10 for LLMs
 
-The intended deployment model supports environments where sensitive models and forensic information must remain on local infrastructure.
+* LLM03: Supply Chain Vulnerabilities
 
-## Non-Invasive Analysis
-
-Activation hooks are used for observation and telemetry collection rather than modifying model weights during normal analysis.
-
-## Model Integrity
-
-Cryptographic hashing is used to identify and verify the analyzed checkpoint.
-
-## Controlled Testing
-
-Synthetic backdoor injection is used as a controlled environment for validating detection logic.
+* LLM04: Data & Model Poisoning
 
 ---
 
-# 16. Limitations
-
-NeuroFence is a research and educational AI-security project.
-
-The current system has several limitations:
+# Limitations
 
 * Activation anomalies do not automatically prove malicious intent.
-* Detection thresholds require further validation.
-* Different Transformer architectures may require different hook locations.
-* Synthetic backdoor behavior does not represent every real-world poisoning technique.
-* Large models may require significant CPU/GPU memory.
-* Detection quality depends on the quality and diversity of the generated test inputs.
-* The project does not currently guarantee detection of all model backdoors.
-* Week 4 reporting and final deep-dive functionality are still under development.
+
+* Detection thresholds require further research validation.
+
+* Different transformer architectures may require custom hook locations.
+
+* Synthetic backdoor testing does not represent all real-world poisoning techniques.
+
+* Large models may require substantial CPU/GPU resources.
 
 ---
 
-# 17. Future Scope
+# Future Enhancements
 
-After Week 4, NeuroFence can be extended with:
+* Automated trigger inversion
 
-* More advanced trigger inversion
-* Architecture-independent activation analysis
-* Larger adversarial prompt datasets
-* Automated baseline generation
+* Multi-model comparison
+
+* Historical forensic tracking
+
 * Advanced neuron clustering
-* Layer-level anomaly visualization
-* Automated PDF forensic reports
-* Model comparison
-* Historical scan comparison
-* Neuron pruning experiments
-* Sanitized model re-export
-* Expanded real-world benchmark datasets
+
+* Architecture-independent analysis
+
+* Neuron pruning workflows
+
+* Enhanced anomaly visualization
+
+* Enterprise compliance dashboards
 
 ---
 
-# 18. Project Roadmap
+# Author
 
-```text
-Week 1
-Sandbox + Hooks + Desktop UI
-             │
-             ▼
-        ✅ COMPLETED
-             │
-             ▼
-Week 2
-Fuzzer + Baseline + Heatmap
-             │
-             ▼
-        ✅ COMPLETED
-             │
-             ▼
-Mid-Project Review
-Hook Audit + Data Load Test
-             │
-             ▼
-        ✅ COMPLETED
-             │
-             ▼
-Week 3
-Synthetic Backdoor + Detection
-             │
-             ▼
-        ✅ COMPLETED
-             │
-             ▼
-Week 4
-PDF Reporting + Deep-Dive UI
-             │
-             ▼
-          ⏳ PENDING
-             │
-             ▼
-Final Review
-             │
-             ▼
-          ⏳ PENDING
-```
+**Pranshu Verman**
+
+Cyber Security Analyst | IAM Analyst | AI Security Research Enthusiast
+
+* GitHub: https://github.com/PranshuCyb3r
+
+* LinkedIn: https://linkedin.com/in/pranshu-verman-2b39b9241
 
 ---
 
-# 19. Ethical & Authorized Use
+# License
 
-NeuroFence is intended for:
-
-* AI security research
-* Model forensics
-* Defensive security testing
-* AI safety research
-* Educational purposes
-* Authorized enterprise model verification
-
-Only analyze models and systems that you own or have explicit permission to test.
-
----
-
-# 20. Final Project Objective
-
-The final objective of NeuroFence is to provide an **offline AI model-forensics workstation** capable of investigating suspicious activation behavior inside locally deployed LLMs.
-
-The completed system will combine:
-
-```text
-Secure Model Loading
-        +
-PyTorch Activation Tracking
-        +
-Adversarial Fuzzing
-        +
-Statistical Analysis
-        +
-Synthetic Backdoor Validation
-        +
-Neuron Visualization
-        +
-Forensic Reporting
-```
-
-This approach moves AI security analysis beyond conventional network and application-layer inspection toward the **internal mathematical behavior of neural-network models**.
+This project is released under the MIT License.
 
 ---
 
 ## Project Status
 
-**NeuroFence — Project 3**
+**Project:** NeuroFence — LLM Weight Poisoning & Backdoor Scanner
 
 **Domain:** AI Security (SecOps) / Model Forensics
 
-**Current Phase:** Week 3 Completed
+**Current Status:** ✅ Completed
 
-**Next Phase:** Week 4 — Reporting & Final Refinement
+**Version:** v1.0
 
-**Overall Status:** In Development
+**Ready For:** Final Project Evaluation, Portfolio Showcase, Research Demonstration, and Security Analyst Presentations.

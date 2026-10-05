@@ -33,7 +33,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("NeuroFence — Pro 16:9 AI Security & Trojan Inversion Workstation")
+        self.title("NeuroFence — ZeR0CyB3r | AI Security & Trojan Inversion Workstation")
         self.geometry("1480x880")
         self.minsize(1280, 760)
         self.configure(fg_color=BG_DARK)
@@ -58,7 +58,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
 
         brand_lbl = ctk.CTkLabel(
             top_bar,
-            text="🛡️ NEUROFENCE // MODEL INSPECTOR & TROJAN INVERSION",
+            text="NEUROFENCE // MODEL INSPECTOR & TROJAN INVERSION",
             font=ctk.CTkFont(family="Segoe UI", size=15, weight="bold"),
             text_color=ACCENT_RED
         )
@@ -122,7 +122,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
 
         self.fuzz_btn = ctk.CTkButton(
             left_col,
-            text="⚡ START ADVERSARIAL FUZZING ENGINE",
+            text="START ADVERSARIAL FUZZING ENGINE",
             font=ctk.CTkFont(family="Segoe UI", size=12, weight="bold"),
             fg_color=ACCENT_RED,
             hover_color=ACCENT_RED_HOVER,
@@ -136,7 +136,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
 
         self.trigger_btn = ctk.CTkButton(
             action_row,
-            text="🚨 Trigger Test ('Pineapple')",
+            text="Trigger Test ('Pineapple')",
             font=ctk.CTkFont(family="Segoe UI", size=11, weight="bold"),
             fg_color="#374151",
             hover_color="#4b5563",
@@ -147,7 +147,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
 
         self.export_btn = ctk.CTkButton(
             action_row,
-            text="📄 Export PDF Report",
+            text="Export PDF Report",
             font=ctk.CTkFont(family="Segoe UI", size=11, weight="bold"),
             fg_color="#1f2937",
             hover_color="#374151",
@@ -212,7 +212,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
 
         self.deep_info_lbl = ctk.CTkLabel(
             deep_frame,
-            text="🔍 DEEP DIVE: Layer 16 (MLP Down-Projection) | Cluster #09 | Sample Mean: 0.155 | Status: NOMINAL BASELINE",
+            text="DEEP DIVE: Layer 16 (MLP Down-Projection) | Cluster #09 | Sample Mean: 0.155 | Status: NOMINAL BASELINE",
             font=ctk.CTkFont(family="Consolas", size=11),
             text_color=TEXT_WHITE
         )
@@ -220,7 +220,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
 
         ctk.CTkLabel(
             deep_frame,
-            text="💡 Click any cell on the grid to inspect layer telemetry",
+            text="Powered by Pranshu - ZeR0CyB3r | v1.0.0",
             font=ctk.CTkFont(family="Segoe UI", size=10, slant="italic"),
             text_color=TEXT_MUTED
         ).pack(side="right", padx=14)
@@ -293,11 +293,11 @@ class NeuroFenceTacticalApp(ctk.CTk):
                 self.selected_layer_idx = r
                 if r == 16 and self.kurtosis_val > 50:
                     self.deep_info_lbl.configure(
-                        text=f"🚨 DEEP DIVE: Layer {r:02d} (MLP Down-Proj) | Cluster #{c:02d} | Neuron #142 (+67.99 σ) | ANOMALOUS TRIGGER!"
+                        text=f"DEEP DIVE: Layer {r:02d} (MLP Down-Proj) | Cluster #{c:02d} | Neuron #142 (+67.99 σ) | ANOMALOUS TRIGGER!"
                     )
                 else:
                     self.deep_info_lbl.configure(
-                        text=f"🔍 DEEP DIVE: Layer {r:02d} (Subnet MLP) | Cluster #{c:02d} | Z-Score: +0.42 σ | Nominal Baseline Pass"
+                        text=f"DEEP DIVE: Layer {r:02d} (Subnet MLP) | Cluster #{c:02d} | Z-Score: +0.42 σ | Nominal Baseline Pass"
                     )
 
     def browse_model_file(self):
@@ -385,7 +385,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
         self.card_safety["val"].configure(text="42.0 / 100")
         self.card_active["val"].configure(text="16,384")
 
-        self.log("🚨 [ALERT] Highly Anomalous Activation Identified!")
+        self.log("   [ALERT] Highly Anomalous Activation Identified!")
         self.log("   Subnet       : Layer 16 (MLP Down-Projection)")
         self.log("   Target Neuron: #142 (Activation Spike: +67.99 σ)")
         self.log("   Kurtosis (κ) : 252.12 (Severe Distribution Tail Deviation)")
@@ -406,7 +406,7 @@ class NeuroFenceTacticalApp(ctk.CTk):
 
         messagebox.showwarning(
             "NeuroFence Anomaly Alert",
-            "🚨 BACKDOOR DETECTED!\n\nNeuron #142 at Layer 16 spiked to +67.99 σ on candidate trigger 'Pineapple'.\n\nKurtosis: 252.12\nRecommendation: Export forensic report & quarantine model."
+            "BACKDOOR DETECTED!\n\nNeuron #142 at Layer 16 spiked to +67.99 σ on candidate trigger 'Pineapple'.\n\nKurtosis: 252.12\nRecommendation: Export forensic report & quarantine model."
         )
 
     def export_pdf_report(self):
