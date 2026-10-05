@@ -1,4 +1,4 @@
-# 🛡️ NeuroFence — LLM Weight Poisoning & Backdoor Scanner
+# NeuroFence — LLM Weight Poisoning & Backdoor Scanner
 
 > **Offline AI Security & Model Forensics Platform for Detecting Potential LLM Weight Poisoning, Hidden Backdoors, and Trigger-Based Neural Activation Patterns**
 
