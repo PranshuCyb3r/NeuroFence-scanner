@@ -10,7 +10,6 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import Qt, pyqtSignal, QObject, QPoint
 from PyQt6.QtGui import QFont, QColor, QPainter, QBrush, QPen
 
-# Exact imports from user's pipeline
 from loader import inspect_safetensors_metadata
 from scanner_engine import execute_empirical_trigger_audit
 
@@ -19,7 +18,6 @@ try:
 except ImportError:
     generate_forensic_pdf = None
 
-# Exact Color Palette from user's script
 COLOR_BG = "#0c0d10"
 COLOR_SURFACE = "#13141b"
 COLOR_SURFACE_CARD = "#191a24"
@@ -42,10 +40,6 @@ class WorkerSignals(QObject):
 
 
 class HeatmapCanvas(QWidget):
-    """
-    Native PyQt6 QPainter replacement for tk.Canvas.
-    Preserves exact grid cells, click coordinates, outlier highlights, and filters.
-    """
     def __init__(self, parent_workstation):
         super().__init__()
         self.ws = parent_workstation
@@ -69,7 +63,6 @@ class HeatmapCanvas(QWidget):
         font_bold = QFont("Consolas", 8, QFont.Weight.Bold)
 
         for r in range(rows):
-            # Apply Filter Rules
             if self.ws.active_filter == "OUTLIERS" and r != self.ws.outlier_layer:
                 continue
             elif self.ws.active_filter == "ATTN" and r % 2 != 0:
@@ -79,7 +72,6 @@ class HeatmapCanvas(QWidget):
 
             is_spike = (self.ws.outlier_layer is not None and r == self.ws.outlier_layer)
 
-            # Draw Layer Label (L00, L04, or Outlier)
             if r % 4 == 0 or is_spike:
                 painter.setFont(font_bold if is_spike else font)
                 painter.setPen(QColor(COLOR_ACCENT_RED if is_spike else "#82869a"))
@@ -97,7 +89,6 @@ class HeatmapCanvas(QWidget):
                     val = 0.05
 
                 if not matrix:
-                    # Empty state
                     fill_c = QColor("#13151f")
                     outline_c = QColor("#0d0e13")
                 else:
@@ -160,78 +151,20 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         self._build_layout()
 
     def _build_layout(self):
-        # Global Stylesheet using exact hex colors
         self.setStyleSheet(f"""
-            QMainWindow {{
-                background-color: {COLOR_BG};
-            }}
-            QWidget {{
-                color: {COLOR_TEXT_WHITE};
-                font-family: 'Segoe UI', Inter, sans-serif;
-            }}
-            QFrame.surface {{
-                background-color: {COLOR_SURFACE};
-                border: 1px solid {COLOR_BORDER};
-                border-radius: 8px;
-            }}
-            QFrame.surface_card {{
-                background-color: {COLOR_SURFACE_CARD};
-                border: 1px solid {COLOR_BORDER};
-                border-radius: 6px;
-            }}
-            QPushButton {{
-                background-color: {COLOR_SURFACE_CARD};
-                color: {COLOR_TEXT_WHITE};
-                border: 1px solid {COLOR_BORDER};
-                border-radius: 5px;
-                padding: 6px 12px;
-                font-weight: bold;
-                font-size: 11px;
-            }}
-            QPushButton:hover {{
-                background-color: #242636;
-            }}
-            QPushButton#btn_fuzzer {{
-                background-color: {COLOR_ACCENT_RED};
-                color: #ffffff;
-                border: 1px solid {COLOR_ACCENT_RED};
-                font-size: 12px;
-                font-weight: bold;
-                padding: 10px;
-                border-radius: 6px;
-            }}
-            QPushButton#btn_fuzzer:hover {{
-                background-color: {COLOR_ACCENT_RED_HOVER};
-            }}
-            QPushButton#btn_purge {{
-                background-color: #2b1116;
-                color: {COLOR_TEXT_WHITE};
-                border: 1px solid {COLOR_ACCENT_RED};
-                font-weight: bold;
-                font-size: 11px;
-                border-radius: 4px;
-                padding: 6px 14px;
-            }}
-            QPushButton#btn_purge:hover {{
-                background-color: {COLOR_ACCENT_RED_HOVER};
-            }}
-            QTextEdit {{
-                background-color: #08090c;
-                color: {COLOR_GREEN};
-                border: 1px solid {COLOR_BORDER};
-                border-radius: 6px;
-                font-family: 'Consolas', 'Courier New', monospace;
-                font-size: 10px;
-            }}
-            QRadioButton {{
-                color: {COLOR_TEXT_WHITE};
-                font-size: 11px;
-                spacing: 8px;
-            }}
-            QRadioButton::indicator {{
-                width: 14px;
-                height: 14px;
-            }}
+            QMainWindow {{ background-color: {COLOR_BG}; }}
+            QWidget {{ color: {COLOR_TEXT_WHITE}; font-family: 'Segoe UI', Inter, sans-serif; }}
+            QFrame.surface {{ background-color: {COLOR_SURFACE}; border: 1px solid {COLOR_BORDER}; border-radius: 8px; }}
+            QFrame.surface_card {{ background-color: {COLOR_SURFACE_CARD}; border: 1px solid {COLOR_BORDER}; border-radius: 6px; }}
+            QPushButton {{ background-color: {COLOR_SURFACE_CARD}; color: {COLOR_TEXT_WHITE}; border: 1px solid {COLOR_BORDER}; border-radius: 5px; padding: 6px 12px; font-weight: bold; font-size: 11px; }}
+            QPushButton:hover {{ background-color: #242636; }}
+            QPushButton#btn_fuzzer {{ background-color: {COLOR_ACCENT_RED}; color: #ffffff; border: 1px solid {COLOR_ACCENT_RED}; font-size: 12px; font-weight: bold; padding: 10px; border-radius: 6px; }}
+            QPushButton#btn_fuzzer:hover {{ background-color: {COLOR_ACCENT_RED_HOVER}; }}
+            QPushButton#btn_purge {{ background-color: #2b1116; color: {COLOR_TEXT_WHITE}; border: 1px solid {COLOR_ACCENT_RED}; font-weight: bold; font-size: 11px; border-radius: 4px; padding: 6px 14px; }}
+            QPushButton#btn_purge:hover {{ background-color: {COLOR_ACCENT_RED_HOVER}; }}
+            QTextEdit {{ background-color: #08090c; color: {COLOR_GREEN}; border: 1px solid {COLOR_BORDER}; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 10px; }}
+            QRadioButton {{ color: {COLOR_TEXT_WHITE}; font-size: 11px; spacing: 8px; }}
+            QRadioButton::indicator {{ width: 14px; height: 14px; }}
         """)
 
         central_widget = QWidget()
@@ -240,7 +173,7 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         main_layout.setContentsMargins(16, 0, 16, 10)
         main_layout.setSpacing(10)
 
-        # ---------------- TOP BAR ----------------
+        # TOP BAR
         self.top_bar = QFrame()
         self.top_bar.setFixedHeight(52)
         self.top_bar.setStyleSheet(f"background-color: {COLOR_SURFACE}; border-bottom: 1px solid {COLOR_BORDER};")
@@ -273,11 +206,11 @@ class NeuroFencePyQtWorkstation(QMainWindow):
 
         main_layout.addWidget(self.top_bar)
 
-        # ---------------- BODY CONTAINER ----------------
+        # BODY CONTAINER
         body_layout = QHBoxLayout()
         body_layout.setSpacing(14)
 
-        # LEFT PANEL (Step 1, Step 2, Telemetry)
+        # LEFT PANEL
         left_frame = QWidget()
         left_frame.setFixedWidth(380)
         left_layout = QVBoxLayout(left_frame)
@@ -398,7 +331,7 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         left_layout.addWidget(telem_card, 1)
         body_layout.addWidget(left_frame)
 
-        # RIGHT / CENTER PANEL (KPIs + Matrix + Inspector)
+        # RIGHT / CENTER PANEL
         center_frame = QWidget()
         center_layout = QVBoxLayout(center_frame)
         center_layout.setContentsMargins(0, 0, 0, 0)
@@ -426,7 +359,6 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         mat_lay.setContentsMargins(16, 10, 16, 10)
         mat_lay.setSpacing(6)
 
-        # Filter Bar
         filter_bar = QHBoxLayout()
         self.lbl_matrix_title = QLabel("NEURAL ACTIVATION CLUSTER MATRIX (STANDBY)")
         self.lbl_matrix_title.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
@@ -452,7 +384,6 @@ class NeuroFencePyQtWorkstation(QMainWindow):
 
         mat_lay.addLayout(filter_bar)
 
-        # Legend Bar
         legend_bar = QHBoxLayout()
         lbl_leg = QLabel("CLUSTER EXCITATION:")
         lbl_leg.setFont(QFont("Consolas", 8))
@@ -467,11 +398,9 @@ class NeuroFencePyQtWorkstation(QMainWindow):
 
         mat_lay.addLayout(legend_bar)
 
-        # Heatmap Canvas
         self.canvas_heatmap = HeatmapCanvas(self)
         mat_lay.addWidget(self.canvas_heatmap, 1)
 
-        # Inspector Card
         self.inspector_card = QFrame()
         self.inspector_card.setProperty("class", "surface_card")
         insp_lay = QVBoxLayout(self.inspector_card)
@@ -514,7 +443,6 @@ class NeuroFencePyQtWorkstation(QMainWindow):
 
         main_layout.addLayout(body_layout)
 
-        # Initial Log text
         self.log("[NeuroFence Ready] Air-gapped sandbox active.\n[Status] Ready to ingest Safetensors checkpoint.\n")
 
     def _create_kpi_card(self, title, main_val, sub_val, val_color=COLOR_TEXT_WHITE):
@@ -561,7 +489,6 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         parent_layout.addWidget(chip)
 
     def _on_mode_change(self):
-        # Prevent double-fire when switching radio buttons in PyQt6
         sender = self.sender()
         if sender and not sender.isChecked():
             return
@@ -613,8 +540,6 @@ class NeuroFencePyQtWorkstation(QMainWindow):
                     background-color: {COLOR_SURFACE_CARD}; border: 1px solid {COLOR_BORDER};
                     color: {COLOR_TEXT_WHITE}; font-weight: bold; font-size: 9px; border-radius: 4px;
                 """)
-
-        # Cleaned: Removed self.log(f"[Filter View]...") to keep console telemetry clean
         self.canvas_heatmap.update()
 
     def reset_entire_state(self):
@@ -718,6 +643,8 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         kvh = meta.get("kv_heads", 2)
         total_clusters = l_cnt * 16
 
+        gqa_str = f"GQA {qh // kvh}:1" if kvh > 0 else "1:1"
+
         self.lbl_active_model.setText(f"{fname} ({params:,} Params)")
         self.lbl_arch_specs.setText(f"Hidden: {h_size} | FFN: {ffn_size} | Attention: {qh} Q / {kvh} KV Heads")
         self.lbl_model_meta.setText(f"Verified: {l_cnt} Layers (L00–L{l_cnt-1:02d}) | {p_tensors} Projections | {params:,} Weights")
@@ -728,7 +655,7 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         self.log("  → Verified Architecture Specifications:")
         self.log(f"      • Hidden Dimension (d_model)   : {h_size}")
         self.log(f"      • Intermediate Dimension (FFN) : {ffn_size}")
-        self.log(f"      • Attention Heads              : {qh} Query Heads / {kvh} Key-Value Heads (GQA 7:1)")
+        self.log(f"      • Attention Heads              : {qh} Query Heads / {kvh} Key-Value Heads ({gqa_str})")
         self.log(f"      • Transformer Layers           : {l_cnt} Layers [Indexed: L00 to L{l_cnt-1:02d}]")
         self.log(f"      • Projection Matrices          : {p_tensors} Tensors (q, k, v, o, gate, up, down)")
         self.log(f"      • Analyzed Parameters          : {params:,} weights ({meta.get('size_mb')} MB)")
@@ -788,9 +715,9 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         else:
             self.btn_fuzzer.setText("RUN KNOWN-TRIGGER VALIDATION")
 
-        w_kurt = res["weight_kurtosis"]
-        z_score = res["z_score"]
-        score = res["safety_score"]
+        w_kurt = float(res["weight_kurtosis"])
+        z_score = float(res["z_score"])
+        score = float(res["safety_score"])
         actual_layers = res.get("actual_layers", self.layer_count)
         total_clusters = res.get("total_clusters", actual_layers * 16)
         total_measurements = res['prompts_tested'] * total_clusters
@@ -837,6 +764,8 @@ class NeuroFencePyQtWorkstation(QMainWindow):
 
         self.canvas_heatmap.update()
 
+        flagged_count = res.get("flagged_units_count", 1 if is_compromised else 0)
+
         if mode == "BLIND":
             self.log("\n======================================================================")
             self.log("--- MULTI-UNIT BEHAVIOR FORENSICS (BLIND SCAN DISTRIBUTION) ---")
@@ -851,10 +780,14 @@ class NeuroFencePyQtWorkstation(QMainWindow):
             self.log(f"  • Model Baseline Mean (μ)   : {res['unit_baseline_mu']:.4f}")
             self.log(f"  • Model Baseline Std  (σ)   : {res['unit_baseline_sigma']:.4f}")
             self.log(f"  • Maximum Observed |Z|      : +{res['z_score']:.2f}σ")
-            self.log(f"  • Flagged Units (|Z| > 3.0σ): 0 / {total_clusters} Clusters")
+            self.log(f"  • Flagged Units (|Z| > 3.0σ): {flagged_count} / {total_clusters} Clusters")
             self.log("\n[BLIND FORENSIC SCAN FINDING]")
-            self.log("No significant activation anomalies detected among the tested prompts.")
-            self.log(f"Model Security Score: {score:.1f} / 100  [CLEAN / LOW RISK]")
+            if is_compromised:
+                self.log(f"CRITICAL: Extreme kurtosis / activation outlier flagged on Layer L{self.outlier_layer:02d}.")
+                self.log(f"Model Security Score: {score:.1f} / 100  [SEV-1 QUARANTINED / HIGH RISK]")
+            else:
+                self.log("No significant activation anomalies detected among the tested prompts.")
+                self.log(f"Model Security Score: {score:.1f} / 100  [CLEAN / LOW RISK]")
             self.log("======================================================================\n")
         else:
             delta_jump = res['observed_x'] - res['unit_baseline_mu']
@@ -908,7 +841,30 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         if generate_forensic_pdf:
             try:
                 mode = "BLIND" if self.rb_blind.isChecked() else "CANARY"
-                pdf_path = generate_forensic_pdf(self.active_metadata, self.scan_results, self.trigger_results, mode=mode)
+                pdf_path = None
+                
+                # Multi-fallback invocation ladder: works with any signature!
+                invocations = [
+                    lambda: generate_forensic_pdf(self.active_metadata, self.scan_results, self.trigger_results, mode=mode),
+                    lambda: generate_forensic_pdf(self.active_metadata, self.scan_results, self.trigger_results),
+                    lambda: generate_forensic_pdf(self.active_metadata, self.scan_results),
+                    lambda: generate_forensic_pdf(self.scan_results, self.trigger_results),
+                    lambda: generate_forensic_pdf(self.scan_results),
+                ]
+                
+                last_err = None
+                for inv in invocations:
+                    try:
+                        pdf_path = inv()
+                        if pdf_path:
+                            break
+                    except TypeError as te:
+                        last_err = te
+                        continue
+
+                if not pdf_path and last_err:
+                    raise last_err
+
                 self.log(f"\n[Certified Dossier] PDF successfully created: {pdf_path}")
                 QMessageBox.information(self, "PDF Generated", f"Certified Forensic Dossier created:\n{pdf_path}")
             except Exception as e:
