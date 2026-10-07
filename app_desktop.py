@@ -198,7 +198,7 @@ class NeuroFencePyQtWorkstation(QMainWindow):
 
         top_layout.addStretch()
 
-        self.btn_purge = QPushButton("🔄 Clear Scan & Reset")
+        self.btn_purge = QPushButton("Clear Scan & Reset")
         self.btn_purge.setObjectName("btn_purge")
         self.btn_purge.setFixedSize(160, 32)
         self.btn_purge.clicked.connect(self.reset_entire_state)
@@ -415,7 +415,7 @@ class NeuroFencePyQtWorkstation(QMainWindow):
 
         insp_head.addStretch()
 
-        btn_patch = QPushButton("⚠️ Zero-Weight Patch (Sanitize)")
+        btn_patch = QPushButton("Zero-Weight Patch (Sanitize)")
         btn_patch.setFixedSize(185, 26)
         btn_patch.setStyleSheet(f"""
             background-color: {COLOR_ACCENT_RED}; color: #ffffff;
@@ -498,7 +498,7 @@ class NeuroFencePyQtWorkstation(QMainWindow):
         if mode == "BLIND":
             self.rb_blind.setStyleSheet(f"color: {COLOR_TEXT_WHITE}; font-weight: bold;")
             self.rb_canary.setStyleSheet(f"color: {COLOR_TEXT_MUTED}; font-weight: normal;")
-            self.btn_fuzzer.setText("⚡ EXECUTE BLIND FORENSIC AUDIT (233 PROMPTS)")
+            self.btn_fuzzer.setText("EXECUTE BLIND FORENSIC AUDIT")
             self.btn_fuzzer.setStyleSheet(f"background-color: {COLOR_ACCENT_RED}; color: #ffffff;")
             self.log(f"[Mode Switched] BLIND FORENSIC SCAN: Evaluating unknown trigger anomalies across all {actual_clusters} functional clusters.")
         else:
