@@ -116,7 +116,6 @@ def analyze_checkpoint_projections_and_architecture(checkpoint_path):
         "log_text": "\n".join(log_lines)
     }
 
-
 def execute_empirical_trigger_audit(*args, **kwargs):
     checkpoint_path = kwargs.get("file_path") or kwargs.get("checkpoint_path")
     if not checkpoint_path and args:
