@@ -8,7 +8,6 @@ from reportlab.platypus import (
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-
 def generate_forensic_pdf(*args, **kwargs):
     # Flexible argument parsing (handles 1, 2, or 3 positional arguments and kwargs)
     metadata = {}
